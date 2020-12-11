@@ -258,6 +258,7 @@ type protocolRW struct {
 }
 
 func (rw *protocolRW) WriteMsg(msg *Message) (err error) {
+	fmt.Printf("[TEST] P2P WriteMsg\n")
 	if msg.Code >= rw.Length {
 		return errors.New("invalid msg code")
 	}
@@ -268,6 +269,7 @@ func (rw *protocolRW) WriteMsg(msg *Message) (err error) {
 }
 
 func (rw *protocolRW) ReadMsg() (*Message, error) {
+	fmt.Printf("[TEST] P2P ReadMsg\n")
 	select {
 	case msg := <-rw.in:
 		msg.Code -= rw.offset

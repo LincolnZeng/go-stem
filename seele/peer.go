@@ -111,7 +111,7 @@ func (p *peer) Info() *PeerInfo {
 
 // Send writes an RLP-encoded message with the given code.
 func (p *peer) Send(msgcode uint16, data interface{}) error {
-	p.log.Info("peer send msgcode %d", msgcode)
+	p.log.Info("[DEBUG] peer send msgcode %d", msgcode)
 	buff := common.SerializePanic(data)
 	return p2p.SendMessage(p.rw, msgcode, buff)
 }

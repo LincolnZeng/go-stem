@@ -42,6 +42,7 @@ func (c *core) handlePrepare(msg *message, src bft.Verifier) error {
 
 	if ((c.current.IsHashLocked() && prepare.Digest == c.current.GetLockedHash()) || c.current.GetPrepareOrCommitSize() > 2*c.verSet.F()) &&
 		c.state.Cmp(StatePrepared) < 0 {
+		c.log.Info("[DEBUG] after handle prepre msg, commit it")
 		c.current.LockHash()
 		c.setState(StatePrepared)
 		c.sendCommit()
@@ -63,6 +64,7 @@ func (c *core) verifyPrepare(prepare *bft.Subject, src bft.Verifier) error {
 	return nil
 }
 func (c *core) acceptPrepare(msg *message, src bft.Verifier) error {
+	c.log.Info("bft-2 accept prepare")
 	// Add the PREPARE message to current round state
 	if err := c.current.Prepares.Add(msg); err != nil {
 		c.log.Error("Failed to add PREPARE message to round state. from %s. state %d. msg %v. err %s",

@@ -282,19 +282,20 @@ func (task *Task) chooseTransactionsSubchain(seele SeeleBackend, statedb *state.
 	// task.depositVers = append(task.depositVers, common.BytesToAddress(hexutil.MustHexToBytes("0x1b9412d61a25f5f5decbf489fe5ed595d8b610a1")))
 	// task.exitVers = append(task.exitVers, common.BytesToAddress(hexutil.MustHexToBytes("0x1b9412d61a25f5f5decbf489fe5ed595d8b610a1")))
 
-	if len(task.depositVers) > 0 || len(task.exitVers) > 0 {
-		log.Warn("deposit verifiers", task.depositVers)
-		log.Warn("exit verifiers", task.exitVers)
-		var err error
-		task.header.SecondWitness, err = task.prepareWitness(task.header, task.challengedTxs, task.depositVers, task.exitVers)
-		if err != nil {
-			log.Error("failed to prepare deposit or exit tx into secondwitness")
+	/*
+		if len(task.depositVers) > 0 || len(task.exitVers) > 0 {
+			log.Warn("deposit verifiers", task.depositVers)
+			log.Warn("exit verifiers", task.exitVers)
+			var err error
+			task.header.SecondWitness, err = task.prepareWitness(task.header, task.challengedTxs, task.depositVers, task.exitVers)
+			if err != nil {
+				log.Error("failed to prepare deposit or exit tx into secondwitness")
+			}
+			log.Debug("apply new verifiers into witness, %s", task.header.SecondWitness)
+
 		}
-		log.Debug("apply new verifiers into witness, %s", task.header.SecondWitness)
-
-	}
-	// test code end here
-
+		// test code end here
+	*/
 	txIndex := 1 // the first tx is miner reward
 
 	for size > 0 {

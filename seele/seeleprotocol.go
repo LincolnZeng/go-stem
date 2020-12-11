@@ -41,6 +41,8 @@ var (
 	debtMsgCode uint16 = 13
 
 	protocolMsgCodeLength uint16 = 14
+
+	bftP2PMsg uint16 = 0x12
 )
 
 func codeToStr(code uint16) string {
@@ -484,14 +486,33 @@ handler:
 			p.log.Debug("get error when read msg from %s, %s", peer.peerStrID, err)
 			break
 		}
+		fmt.Printf("[TEST] read peer msg: %+v\n", msg)
 
 		// skip unsupported message from different shard peer
 		if peer.Node.Shard != common.LocalShardNumber {
-			if msg.Code != transactionsMsgCode && msg.Code != debtMsgCode && msg.Code != statusChainHeadMsgCode {
+			if msg.Code != transactionsMsgCode && msg.Code != debtMsgCode && msg.Code != statusChainHeadMsgCode && msg.Code != bftP2PMsg {
 				continue
 			}
 		}
+		handler, ok := p.engine.(consensus.Handler)
+		fmt.Printf("[TEST] engine consensus handler %+v\n", handler)
 
+		if ok {
+			for _, p := range p.peerSet.getPeerByShard(common.LocalShardNumber) {
+				addr := p.Node.ID
+				fmt.Printf("[TEST] engine consensus handler handleMsg%+v\n", handler)
+
+				handled, err := handler.HandleMsg(addr, msg)
+				fmt.Printf("[TEST] HandleMsg with result: handled %t, err %s\n", handled, err)
+				if err != nil {
+					p.log.Error("Engine P2P handleMsg error", err)
+					return
+				}
+			}
+		} else {
+			fmt.Printf("[TEST] engine consensus handler NOT OK%+v\n", handler)
+
+		}
 		// print transaction and debt pool length
 		p.log.Debug("handleMsg tx pool and debt pool length, tx %d, debt %d", p.txPool.GetTxCount(), p.debtPool.GetDebtCount(true, true))
 

@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/seeleteam/go-seele/common"
+	"github.com/seeleteam/quorum/rlp"
 )
 
 const (
@@ -95,6 +96,12 @@ func (msg *Message) UnZip() error {
 
 	(*msg).Payload = arrayByte
 	return nil
+}
+
+// For the decoding rules, please see package rlp.
+
+func (m *Message) Decode(val interface{}) error {
+	return rlp.DecodeBytes(m.Payload, val)
 }
 
 // ProtoHandShake handshake message for two peer to exchange base information

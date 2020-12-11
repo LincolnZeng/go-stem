@@ -15,13 +15,20 @@ import (
 /*this file will implement all methods at consensus/consensus.go Handler interface*/
 
 const (
-	bftMsg = 0x11
+	bftMsg uint16 = 0x12
 )
 
 // define your errors here
 var (
 	errDecodeFailed = errors.New("fail to decode bft message")
 )
+
+// type handlerMessage struct {
+// 	Code       uint16
+// 	Size       uint32
+// 	Payload    []byte
+// 	ReceivedAt time.Time
+// }
 
 func (s *server) Protocal() consensus.Protocol {
 	return consensus.Protocol{
@@ -31,7 +38,7 @@ func (s *server) Protocal() consensus.Protocol {
 	}
 }
 
-// HandleMsg implements consensus.Handler.HandleMsg
+// // HandleMsg implements consensus.Handler.HandleMsg
 func (s *server) HandleMsg(addr common.Address, message interface{}) (bool, error) {
 	s.coreMu.Lock()
 	defer s.coreMu.Unlock()
@@ -49,9 +56,56 @@ func (s *server) HandleMsg(addr common.Address, message interface{}) (bool, erro
 		}
 		var data []byte
 		if err := common.Deserialize(msg.Payload, &data); err != nil {
+			s.log.Error("[DEBUG] consensus handler failed to deserialize msg")
 			return true, errDecodeFailed
 		}
 		hash := crypto.HashBytes(data)
+
+		// handle peer's message
+		var m *lru.ARCCache
+		ms, ok := s.recentMessages.Get(hash)
+
+		if ok {
+			m, _ = ms.(*lru.ARCCache)
+		} else {
+			m, _ = lru.NewARC(inmemoryMessages)
+			s.recentMessages.Add(addr, m)
+		}
+		m.Add(hash, true)
+
+		// handle self know message
+		if _, ok := s.knownMessages.Get(hash); ok {
+			return true, nil
+		}
+		s.knownMessages.Add(hash, true)
+
+		go s.bftEventMux.Post(bft.MessageEvent{ // post all
+			Payload: data,
+		})
+		fmt.Println("Post in HandleMsg")
+
+		return true, nil
+	}
+
+	return false, nil
+}
+
+// HandleMsg implements consensus.Handler.HandleMsg
+func (s *server) HandleMsg2(addr common.Address, msg p2p.Message) (bool, error) {
+	s.coreMu.Lock()
+	defer s.coreMu.Unlock()
+	s.log.Error("[DEBUG-handleMsg] msg code %d", msg.Code)
+
+	// make sure msg type is right
+	if msg.Code == bftMsg {
+		// if core is not started
+		if !s.coreStarted {
+			return true, bft.ErrEngineStopped
+		}
+		data, hash, err := s.decode(msg)
+		if err != nil {
+			return true, errDecodeFailed
+		}
 
 		// handle peer's message
 		var m *lru.ARCCache
@@ -96,4 +150,12 @@ func (s *server) HandleNewChainHead() error {
 
 	go s.bftEventMux.Post(bft.FinalCommittedEvent{})
 	return nil
+}
+
+func (s *server) decode(msg p2p.Message) ([]byte, common.Hash, error) {
+	var data []byte
+	if err := msg.Decode(&data); err != nil {
+		return nil, common.Hash{}, errDecodeFailed
+	}
+	return data, bft.RLPHash(data), nil
 }

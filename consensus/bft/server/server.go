@@ -234,9 +234,7 @@ func (s *server) Gossip(verSet bft.VerifierSet, payload []byte) error {
 			}
 			// // fmt.Printf("hash size %d, ARCcache size %d\n", len(hash), inmemoryMessages)
 			m.Add(hash, true)
-			// common.Trace2()
 			s.recentMessages.Add(addr, m)
-			// common.Trace2()
 			s.log.Error("[TEST] send payload to peer %s", addr)
 			go p.Send(bftMsg, payload)
 
@@ -401,3 +399,20 @@ func (s *server) HasBadProposal(hash common.Hash) bool {
 	}
 	return s.hasBadBlock(hash)
 }
+
+// func (s *server) P2PReadLoop(readErr chan<- error) {
+// 	defer s.log.Debug("exit read loop, remote: %s", s.RemoteAddr())
+// 	defer s.wg.Done()
+// 	for {
+// 		msgRecv, err := s.rw.ReadMsg()
+// 		if err != nil {
+// 			readErr <- err
+// 			return
+// 		}
+
+// 		if err = s.HandleMsg(msgRecv); err != nil {
+// 			readErr <- err
+// 			return
+// 		}
+// 	}
+// }

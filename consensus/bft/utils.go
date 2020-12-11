@@ -6,8 +6,10 @@
 package bft
 
 import (
+	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/seeleteam/go-seele/common"
 	"github.com/seeleteam/go-seele/crypto"
+	"github.com/seeleteam/go-seele/crypto/sha3"
 )
 
 const WitnessSize = 8
@@ -38,4 +40,11 @@ func CheckVerifierSignature(verSet VerifierSet, data []byte, sig []byte) (common
 	}
 
 	return common.Address{}, ErrAddressUnauthorized
+}
+
+func RLPHash(v interface{}) (hash common.Hash) {
+	hw := sha3.NewKeccak256()
+	rlp.Encode(hw, v)
+	hw.Sum(hash[:0])
+	return hash
 }
