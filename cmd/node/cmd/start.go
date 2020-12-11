@@ -33,12 +33,12 @@ import (
 )
 
 var (
-	seeleNodeConfigFile string
-	miner               string
-	metricsEnableFlag   bool
-	accountsConfig      string
-	threads             int
-	startHeight         int
+	scdoNodeConfigFile string
+	miner              string
+	metricsEnableFlag  bool
+	accountsConfig     string
+	threads            int
+	startHeight        int
 
 	// default is full node
 	lightNode bool
@@ -63,7 +63,7 @@ var startCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		var wg sync.WaitGroup
-		nCfg, err := LoadConfigFromFile(seeleNodeConfigFile, accountsConfig)
+		nCfg, err := LoadConfigFromFile(scdoNodeConfigFile, accountsConfig)
 		if err != nil {
 			fmt.Printf("failed to reading the config file: %s\n", err.Error())
 			return
@@ -74,7 +74,7 @@ var startCmd = &cobra.Command{
 		}
 		fmt.Printf("data folder: %s\n", nCfg.BasicConfig.DataDir)
 
-		seeleNode, err := node.New(nCfg)
+		scdoNode, err := node.New(nCfg)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -117,25 +117,25 @@ var startCmd = &cobra.Command{
 		}
 
 		if lightNode {
-			lightService, err := light.NewServiceClient(ctx, nCfg, lightLog, common.LightChainDir, seeleNode.GetShardNumber(), engine)
+			lightService, err := light.NewServiceClient(ctx, nCfg, lightLog, common.LightChainDir, scdoNode.GetShardNumber(), engine)
 			if err != nil {
 				fmt.Println("Create light service error.", err.Error())
 				return
 			}
 
-			if err := seeleNode.Register(lightService); err != nil {
+			if err := scdoNode.Register(lightService); err != nil {
 				fmt.Println(err.Error())
 				return
 			}
 
-			err = seeleNode.Start()
+			err = scdoNode.Start()
 			if err != nil {
 				fmt.Printf("got error when start node: %s\n", err)
 				return
 			}
 		} else {
 			// light client manager
-			manager, err := lightclients.NewLightClientManager(seeleNode.GetShardNumber(), ctx, nCfg, engine)
+			manager, err := lightclients.NewLightClientManager(scdoNode.GetShardNumber(), ctx, nCfg, engine)
 			if err != nil {
 				fmt.Printf("create light client manager failed. %s", err)
 				return
@@ -150,14 +150,14 @@ var startCmd = &cobra.Command{
 
 			seeleService.Miner().SetThreads(threads)
 
-			lightServerService, err := light.NewServiceServer(seeleService, nCfg, lightLog, seeleNode.GetShardNumber())
+			lightServerService, err := light.NewServiceServer(seeleService, nCfg, lightLog, scdoNode.GetShardNumber())
 			if err != nil {
 				fmt.Println("Create light server err. ", err.Error())
 				return
 			}
 
 			// monitor service
-			monitorService, err := monitor.NewMonitorService(seeleService, seeleNode, nCfg, slog, "Test monitor")
+			monitorService, err := monitor.NewMonitorService(seeleService, scdoNode, nCfg, slog, "Test monitor")
 			if err != nil {
 				fmt.Println(err.Error())
 				return
@@ -166,13 +166,13 @@ var startCmd = &cobra.Command{
 			services := manager.GetServices()
 			services = append(services, seeleService, monitorService, lightServerService)
 			for _, service := range services {
-				if err := seeleNode.Register(service); err != nil {
+				if err := scdoNode.Register(service); err != nil {
 					fmt.Println(err.Error())
 					return
 				}
 			}
 
-			err = seeleNode.Start()
+			err = scdoNode.Start()
 			if maxConns > 0 {
 				seeleService.P2PServer().SetMaxConnections(maxConns)
 			}
@@ -218,7 +218,7 @@ var startCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(startCmd)
 
-	startCmd.Flags().StringVarP(&seeleNodeConfigFile, "config", "c", "", "scdo node config file (required)")
+	startCmd.Flags().StringVarP(&scdoNodeConfigFile, "config", "c", "", "scdo node config file (required)")
 	startCmd.MustMarkFlagRequired("config")
 
 	startCmd.Flags().StringVarP(&miner, "miner", "m", "start", "miner start or not, [start, stop]")

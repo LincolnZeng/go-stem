@@ -16,11 +16,11 @@ type rpcFlag interface {
 	getValue() (interface{}, error)
 }
 
-type seeleAddressFlag struct {
+type scdoAddressFlag struct {
 	cli.StringFlag
 }
 
-func (flag seeleAddressFlag) getValue() (interface{}, error) {
+func (flag scdoAddressFlag) getValue() (interface{}, error) {
 	if val := *flag.Destination; len(val) > 0 {
 		return common.HexToAddress(val)
 	}
@@ -54,7 +54,7 @@ var (
 	}
 
 	accountValue string
-	accountFlag  = seeleAddressFlag{
+	accountFlag  = scdoAddressFlag{
 		StringFlag: cli.StringFlag{
 			Name:        "account",
 			Value:       "",
@@ -147,7 +147,7 @@ var (
 	}
 
 	contractValue string
-	contractFlag  = seeleAddressFlag{
+	contractFlag  = scdoAddressFlag{
 		StringFlag: cli.StringFlag{
 			Name:        "contract",
 			Usage:       "contract code in hex",

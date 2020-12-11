@@ -17,7 +17,7 @@ import (
 type MonitorService struct {
 	p2pServer *p2p.Server        // Peer-to-Peer server infos
 	scdo      *scdo.SeeleService // scdo full node service
-	seeleNode *node.Node         // scdo node
+	scdoNode *node.Node         // scdo node
 	log       *log.SeeleLog
 
 	rpcAddr string // listening port
@@ -27,10 +27,10 @@ type MonitorService struct {
 }
 
 // NewMonitorService returns a MonitorService instance
-func NewMonitorService(seeleService *scdo.SeeleService, seeleNode *node.Node, conf *node.Config, slog *log.SeeleLog, name string) (*MonitorService, error) {
+func NewMonitorService(seeleService *scdo.SeeleService, scdoNode *node.Node, conf *node.Config, slog *log.SeeleLog, name string) (*MonitorService, error) {
 	return &MonitorService{
 		scdo:      seeleService,
-		seeleNode: seeleNode,
+		scdoNode: scdoNode,
 		log:       slog,
 		name:      name,
 		rpcAddr:   conf.BasicConfig.RPCAddr,

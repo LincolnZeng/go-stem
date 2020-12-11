@@ -71,7 +71,7 @@ func sendSystemContractTx(client *rpc.Client, to common.Address, method byte, pa
 // sendTx send transaction or contract
 func sendTx(client *rpc.Client, arg interface{}) error {
 	var result bool
-	if err := client.Call(&result, "seele_addTx", arg); err != nil || !result {
+	if err := client.Call(&result, "scdo_addTx", arg); err != nil || !result {
 		return fmt.Errorf("Failed to call rpc, %s", err)
 	}
 
@@ -82,7 +82,7 @@ func sendTx(client *rpc.Client, arg interface{}) error {
 func callTx(client *rpc.Client, tx *types.Transaction) (interface{}, error) {
 	var result interface{}
 	if tx != nil {
-		if err := client.Call(&result, "seele_call", tx.Data.To.Hex(), hexutil.BytesToHex(tx.Data.Payload), -1); err != nil {
+		if err := client.Call(&result, "scdo_call", tx.Data.To.Hex(), hexutil.BytesToHex(tx.Data.Payload), -1); err != nil {
 			return nil, fmt.Errorf("Failed to call rpc, %s", err)
 		}
 	} else {

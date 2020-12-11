@@ -21,7 +21,7 @@ func Test_printLogByABI(t *testing.T) {
 	logOut, err2 := printLogByABI(log, parsed)
 	assert.NoError(t, err2)
 
-	slog := &seeleLog{}
+	slog := &scdoLog{}
 	err3 := json.Unmarshal([]byte(logOut), slog)
 	assert.NoError(t, err3)
 	assert.Equal(t, len(slog.Topics), len(log.Topics))

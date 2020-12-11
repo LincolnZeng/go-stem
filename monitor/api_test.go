@@ -69,7 +69,7 @@ func createTestAPI(t *testing.T) (api *PublicMonitorAPI, dispose func()) {
 	dataDir := ctx.Value("ServiceContext").(scdo.ServiceContext).DataDir
 	log := log.GetLogger("scdo")
 
-	seeleNode, err := node.New(&testConf)
+	scdoNode, err := node.New(&testConf)
 	if err != nil {
 		t.Fatal(err)
 		return
@@ -81,14 +81,14 @@ func createTestAPI(t *testing.T) (api *PublicMonitorAPI, dispose func()) {
 		return
 	}
 
-	monitorService, _ := NewMonitorService(seeleService, seeleNode, &testConf, log, "run test")
+	monitorService, _ := NewMonitorService(seeleService, scdoNode, &testConf, log, "run test")
 
-	seeleNode.Register(monitorService)
-	seeleNode.Register(seeleService)
+	scdoNode.Register(monitorService)
+	scdoNode.Register(seeleService)
 
 	api = NewPublicMonitorAPI(monitorService)
 
-	err = seeleNode.Start()
+	err = scdoNode.Start()
 	if err != nil {
 		t.Fatal(err)
 		return
@@ -147,7 +147,7 @@ func createTestAPIErr(errBranch int) (api *PublicMonitorAPI, dispose func()) {
 	dataDir := ctx.Value("ServiceContext").(scdo.ServiceContext).DataDir
 	log := log.GetLogger("scdo")
 
-	seeleNode, err := node.New(&testConf)
+	scdoNode, err := node.New(&testConf)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -159,15 +159,15 @@ func createTestAPIErr(errBranch int) (api *PublicMonitorAPI, dispose func()) {
 		return
 	}
 
-	monitorService, _ := NewMonitorService(seeleService, seeleNode, &testConf, log, "run test")
+	monitorService, _ := NewMonitorService(seeleService, scdoNode, &testConf, log, "run test")
 
-	seeleNode.Register(monitorService)
-	seeleNode.Register(seeleService)
+	scdoNode.Register(monitorService)
+	scdoNode.Register(seeleService)
 
 	api = NewPublicMonitorAPI(monitorService)
 
 	if errBranch != 1 {
-		seeleNode.Start()
+		scdoNode.Start()
 	} else {
 		seeleService.Miner().Start()
 	}
