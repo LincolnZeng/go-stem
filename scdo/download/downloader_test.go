@@ -22,19 +22,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TestSeeleBackend implements the SeeleBackend interface.
-type TestSeeleBackend struct {}
+// TestScdoBackend implements the ScdoBackend interface.
+type TestScdoBackend struct {}
 
-func (scdoBackend *TestSeeleBackend) TxPool() *core.TransactionPool {
+func (scdoBackend *TestScdoBackend) TxPool() *core.TransactionPool {
 	return nil
 } 	
 
-func (scdoBackend *TestSeeleBackend) DebtPool() *core.DebtPool {
+func (scdoBackend *TestScdoBackend) DebtPool() *core.DebtPool {
 	return nil
 } 
 
-func NewTestSeeleBackend() *TestSeeleBackend {
-	scdoBackend := &TestSeeleBackend{}
+func NewTestScdoBackend() *TestScdoBackend {
+	scdoBackend := &TestScdoBackend{}
 	return scdoBackend
 }
 
@@ -61,7 +61,7 @@ func newTestTx(t *testing.T, amount int64, nonce uint64) *types.Transaction {
 
 func newTestDownloader(db database.Database) *Downloader {
 	bc := core.NewTestBlockchain()
-	scdo := NewTestSeeleBackend()
+	scdo := NewTestScdoBackend()
 	d := NewDownloader(bc, scdo)
 	d.tm = newTaskMgr(d, d.masterPeer, nil, 1, 2, 1, nil)
 

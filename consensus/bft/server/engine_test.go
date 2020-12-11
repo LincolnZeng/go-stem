@@ -32,7 +32,7 @@ var genesisAccount = crypto.MustGenerateShardAddress(1)
 
 func newTestGenesis(n int) (*core.Genesis, []*ecdsa.PrivateKey) {
 	accounts := map[common.Address]*big.Int{
-		*genesisAccount: new(big.Int).Mul(big.NewInt(4), common.SeeleToFan),
+		*genesisAccount: new(big.Int).Mul(big.NewInt(4), common.ScdoToFan),
 	}
 
 	// Setup verifiers

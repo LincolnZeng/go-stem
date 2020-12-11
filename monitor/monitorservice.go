@@ -16,9 +16,9 @@ import (
 // MonitorService implements some rpc interfaces provided by a monitor server
 type MonitorService struct {
 	p2pServer *p2p.Server        // Peer-to-Peer server infos
-	scdo      *scdo.SeeleService // scdo full node service
+	scdo      *scdo.ScdoService // scdo full node service
 	scdoNode *node.Node         // scdo node
-	log       *log.SeeleLog
+	log       *log.ScdoLog
 
 	rpcAddr string // listening port
 	name    string // name displayed on the moitor
@@ -27,7 +27,7 @@ type MonitorService struct {
 }
 
 // NewMonitorService returns a MonitorService instance
-func NewMonitorService(scdoService *scdo.SeeleService, scdoNode *node.Node, conf *node.Config, slog *log.SeeleLog, name string) (*MonitorService, error) {
+func NewMonitorService(scdoService *scdo.ScdoService, scdoNode *node.Node, conf *node.Config, slog *log.ScdoLog, name string) (*MonitorService, error) {
 	return &MonitorService{
 		scdo:      scdoService,
 		scdoNode: scdoNode,
@@ -42,7 +42,7 @@ func NewMonitorService(scdoService *scdo.SeeleService, scdoNode *node.Node, conf
 // Protocols implements node.Service, return nil as it dosn't use the p2p service
 func (s *MonitorService) Protocols() []p2p.Protocol { return nil }
 
-// Start implements node.Service, starting goroutines needed by SeeleService.
+// Start implements node.Service, starting goroutines needed by ScdoService.
 func (s *MonitorService) Start(srvr *p2p.Server) error {
 	s.p2pServer = srvr
 

@@ -23,13 +23,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func newTestSeeleBackend() *ScdoBackend {
-	scdoService := newTestSeeleService()
+func newTestScdoBackend() *ScdoBackend {
+	scdoService := newTestScdoService()
 	return &ScdoBackend{scdoService}
 }
 
-func Test_SeeleBackend_GetBlock(t *testing.T) {
-	scdoBackend := newTestSeeleBackend()
+func Test_ScdoBackend_GetBlock(t *testing.T) {
+	scdoBackend := newTestScdoBackend()
 	defer scdoBackend.s.Stop()
 
 	block, err := scdoBackend.GetBlock(common.EmptyHash, -1)

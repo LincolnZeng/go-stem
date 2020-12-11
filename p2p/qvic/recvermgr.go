@@ -18,7 +18,7 @@ import (
 // ReceiverMgr manages QConn's receiver logic.
 type ReceiverMgr struct {
 	lock   sync.Mutex
-	log    *log.SeeleLog
+	log    *log.ScdoLog
 	loopWG sync.WaitGroup
 
 	qconn                      *QConn

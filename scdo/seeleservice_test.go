@@ -24,14 +24,14 @@ func getTmpConfig() *node.Config {
 	acctAddr := crypto.MustGenerateRandomAddress()
 
 	return &node.Config{
-		SeeleConfig: node.SeeleConfig{
+		ScdoConfig: node.ScdoConfig{
 			TxConf:   *core.DefaultTxPoolConfig(),
 			Coinbase: *acctAddr,
 		},
 	}
 }
 
-func newTestSeeleService() *SeeleService {
+func newTestScdoService() *ScdoService {
 	conf := getTmpConfig()
 	serviceContext := ServiceContext{
 		DataDir: filepath.Join(common.GetTempFolder(), "n1"),
@@ -41,7 +41,7 @@ func newTestSeeleService() *SeeleService {
 	ctx := context.WithValue(context.Background(), key, serviceContext)
 	log := log.GetLogger("scdo")
 
-	scdoService, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
+	scdoService, err := NewScdoService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
 		panic(err)
 	}
@@ -49,16 +49,16 @@ func newTestSeeleService() *SeeleService {
 	return scdoService
 }
 
-func Test_SeeleService_Protocols(t *testing.T) {
-	s := newTestSeeleService()
+func Test_ScdoService_Protocols(t *testing.T) {
+	s := newTestScdoService()
 	defer s.Stop()
 
 	protos := s.Protocols()
 	assert.Equal(t, len(protos), 1)
 }
 
-func Test_SeeleService_Start(t *testing.T) {
-	s := newTestSeeleService()
+func Test_ScdoService_Start(t *testing.T) {
+	s := newTestScdoService()
 	defer s.Stop()
 
 	s.Start(nil)
@@ -66,8 +66,8 @@ func Test_SeeleService_Start(t *testing.T) {
 	assert.Equal(t, s.scdoProtocol == nil, true)
 }
 
-func Test_SeeleService_Stop(t *testing.T) {
-	s := newTestSeeleService()
+func Test_ScdoService_Stop(t *testing.T) {
+	s := newTestScdoService()
 	defer s.Stop()
 
 	s.Stop()
@@ -82,8 +82,8 @@ func Test_SeeleService_Stop(t *testing.T) {
 	assert.Equal(t, s.scdoProtocol == nil, true)
 }
 
-func Test_SeeleService_APIs(t *testing.T) {
-	s := newTestSeeleService()
+func Test_ScdoService_APIs(t *testing.T) {
+	s := newTestScdoService()
 	apis := s.APIs()
 
 	assert.Equal(t, len(apis), 10)

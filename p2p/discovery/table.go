@@ -35,10 +35,10 @@ type Table struct {
 	// info of local node
 	selfNode *Node
 
-	log *log.SeeleLog
+	log *log.ScdoLog
 }
 
-func newTable(id common.Address, addr *net.UDPAddr, shard uint, log *log.SeeleLog) *Table {
+func newTable(id common.Address, addr *net.UDPAddr, shard uint, log *log.ScdoLog) *Table {
 	selfNode := NewNodeWithAddr(id, addr, shard)
 
 	table := &Table{

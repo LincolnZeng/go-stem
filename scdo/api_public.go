@@ -22,21 +22,21 @@ import (
 	"github.com/scdoproject/go-stem/crypto"
 )
 
-// PublicSeeleAPI provides an API to access full node-related information.
-type PublicSeeleAPI struct {
-	s *SeeleService
+// PublicScdoAPI provides an API to access full node-related information.
+type PublicScdoAPI struct {
+	s *ScdoService
 }
 
 const maxSizeLimit = 64
 
-// NewPublicSeeleAPI creates a new PublicSeeleAPI object for rpc service.
-func NewPublicSeeleAPI(s *SeeleService) *PublicSeeleAPI {
-	return &PublicSeeleAPI{s}
+// NewPublicScdoAPI creates a new PublicScdoAPI object for rpc service.
+func NewPublicScdoAPI(s *ScdoService) *PublicScdoAPI {
+	return &PublicScdoAPI{s}
 }
 
 // EstimateGas returns an estimate of the amount of gas needed to execute the
 // given transaction against the current pending block.
-func (api *PublicSeeleAPI) EstimateGas(tx *types.Transaction) (uint64, error) {
+func (api *PublicScdoAPI) EstimateGas(tx *types.Transaction) (uint64, error) {
 	// Get the block by block height, if the height is less than zero, get the current block.
 	block, err := getBlock(api.s.chain, -1)
 	if err != nil {
@@ -61,13 +61,13 @@ func (api *PublicSeeleAPI) EstimateGas(tx *types.Transaction) (uint64, error) {
 	return receipt.UsedGas, nil
 }
 
-func (api *PublicSeeleAPI) GetHeight() (int64, error) {
+func (api *PublicScdoAPI) GetHeight() (int64, error) {
 	block := api.s.chain.CurrentBlock()
 	return int64(block.Header.Height), nil
 }
 
 // GetInfo gets the account address that mining rewards will be send to.
-func (api *PublicSeeleAPI) GetInfo() (api2.GetMinerInfo, error) {
+func (api *PublicScdoAPI) GetInfo() (api2.GetMinerInfo, error) {
 	block := api.s.chain.CurrentBlock()
 
 	var status string
@@ -88,7 +88,7 @@ func (api *PublicSeeleAPI) GetInfo() (api2.GetMinerInfo, error) {
 		HeaderHash:         block.HeaderHash,
 		Shard:              common.LocalShardNumber,
 		MinerStatus:        status,
-		Version:            common.SeeleNodeVersion,
+		Version:            common.ScdoNodeVersion,
 		BlockAge:           new(big.Int).Sub(big.NewInt(time.Now().Unix()), block.Header.CreateTimestamp),
 		PeerCnt:            peers,
 	}, nil
@@ -96,7 +96,7 @@ func (api *PublicSeeleAPI) GetInfo() (api2.GetMinerInfo, error) {
 
 // Call is to execute a given transaction on a statedb of a given block height.
 // It does not affect this statedb and blockchain and is useful for executing and retrieve values.
-func (api *PublicSeeleAPI) Call(contract, payload string, height int64) (map[string]interface{}, error) {
+func (api *PublicScdoAPI) Call(contract, payload string, height int64) (map[string]interface{}, error) {
 	contractAddr, err := common.HexToAddress(contract)
 	if err != nil {
 		return nil, fmt.Errorf("invalid contract address: %s", err)
@@ -122,11 +122,11 @@ func (api *PublicSeeleAPI) Call(contract, payload string, height int64) (map[str
 	coinbase := api.s.miner.GetCoinbase()
 	from := crypto.MustGenerateShardAddress(coinbase.Shard())
 	statedb.CreateAccount(*from)
-	statedb.SetBalance(*from, common.SeeleToFan)
+	statedb.SetBalance(*from, common.ScdoToFan)
 
 	amount, price, nonce := big.NewInt(0), big.NewInt(1), uint64(1)
 	// gasLimit = balance / fee
-	gasLimit := common.SeeleToFan.Uint64()
+	gasLimit := common.ScdoToFan.Uint64()
 	tx, err := types.NewMessageTransaction(*from, contractAddr, amount, price, gasLimit, nonce, msg)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create transaction: %s", err)
@@ -148,7 +148,7 @@ func (api *PublicSeeleAPI) Call(contract, payload string, height int64) (map[str
 }
 
 // GetLogs Get the logs that satisfies the condition in the block by height and filter
-func (api *PublicSeeleAPI) GetLogs(height int64, contractAddress common.Address, abiJSON, eventName string) ([]api2.GetLogsResponse, error) {
+func (api *PublicScdoAPI) GetLogs(height int64, contractAddress common.Address, abiJSON, eventName string) ([]api2.GetLogsResponse, error) {
 	parsed, err := abi.JSON(strings.NewReader(abiJSON))
 	if err != nil {
 		return nil, errors.NewStackedError(err, "get abi parser failed")
@@ -217,7 +217,7 @@ func getBlock(chain *core.Blockchain, height int64) (*types.Block, error) {
 
 // GetShardNum gets the account shard number .
 // if the address is valid, return the corresponding shard number, otherwise return 0
-func (api *PublicSeeleAPI) GetShardNum(account common.Address) (uint, error) {
+func (api *PublicScdoAPI) GetShardNum(account common.Address) (uint, error) {
 	err := account.Validate()
 	if err == nil {
 		return account.Shard(), nil

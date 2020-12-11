@@ -28,7 +28,7 @@ type scdoParameterizedError struct {
 	parameters []interface{}
 }
 
-func newSeeleError(code ErrorCode, msg string) error {
+func newScdoError(code ErrorCode, msg string) error {
 	return &scdoError{code, msg}
 }
 

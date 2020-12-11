@@ -58,7 +58,7 @@ type QConn struct {
 	magic                      uint32
 	packDataSize               int
 	wg                         sync.WaitGroup
-	log                        *log.SeeleLog
+	log                        *log.ScdoLog
 
 	senderMgr     *SenderMgr
 	receiverMgr   *ReceiverMgr

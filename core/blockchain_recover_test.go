@@ -23,7 +23,7 @@ import (
 )
 
 func newTestRecoveryPointFile() (string, func()) {
-	dir, err := ioutil.TempDir("", "SeeleCoreRecoveryPoint")
+	dir, err := ioutil.TempDir("", "ScdoCoreRecoveryPoint")
 	if err != nil {
 		panic(err)
 	}

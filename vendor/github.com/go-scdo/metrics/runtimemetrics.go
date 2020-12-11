@@ -45,9 +45,9 @@ func doMark(memStats *runtime.MemStats, lastPauseNs uint64) {
 		metricsCpuGauge.Update(cpuResult)
 	}
 
-	// cpuSeeleResult is the cpu info of the current process
-	if cpuSeeleResult, err := getProcessCPURate(common.CPUMetricsRefreshTime); err == nil {
-		metricsSeeleCpuGauge.Update(cpuSeeleResult)
+	// cpuScdoResult is the cpu info of the current process
+	if cpuScdoResult, err := getProcessCPURate(common.CPUMetricsRefreshTime); err == nil {
+		metricsScdoCpuGauge.Update(cpuScdoResult)
 	}
 
 	// diskResult is the disk info of the current system

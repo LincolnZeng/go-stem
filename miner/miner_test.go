@@ -21,7 +21,7 @@ import (
 )
 
 var defaultMinerAddr = common.BytesToAddress([]byte{1})
-var scdo = NewTestSeeleBackend()
+var scdo = NewTestScdoBackend()
 
 func Test_NewMiner(t *testing.T) {
 	miner := createMiner()
@@ -89,7 +89,7 @@ func Test_MinerPackWithVerifier(t *testing.T) {
 }
 
 func minerPackWithVerifier(t *testing.T, verifier types.DebtVerifier) {
-	backend := NewTestSeeleBackendWithVerifier(verifier)
+	backend := NewTestScdoBackendWithVerifier(verifier)
 	backend.TxPool().SetLogLevel(logrus.WarnLevel)
 	backend.DebtPool().SetLogLevel(logrus.WarnLevel)
 
@@ -183,7 +183,7 @@ func createMiner() *Miner {
 	return NewMiner(defaultMinerAddr, scdo, nil, factory.MustGetConsensusEngine(common.Sha256Algorithm))
 }
 
-func checkMinerMembers(miner *Miner, addr common.Address, scdo SeeleBackend, t *testing.T) {
+func checkMinerMembers(miner *Miner, addr common.Address, scdo ScdoBackend, t *testing.T) {
 	assert.Equal(t, miner.coinbase, addr)
 
 	assert.Equal(t, miner.mining, int32(0))
@@ -195,19 +195,19 @@ func checkMinerMembers(miner *Miner, addr common.Address, scdo SeeleBackend, t *
 	assert.Equal(t, miner.isFirstDownloader, int32(1))
 }
 
-// TestSeeleBackend implements the SeeleBackend interface.
-type TestSeeleBackend struct {
+// TestScdoBackend implements the ScdoBackend interface.
+type TestScdoBackend struct {
 	txPool     *core.TransactionPool
 	debtPool   *core.DebtPool
 	blockchain *core.Blockchain
 }
 
-func NewTestSeeleBackend() *TestSeeleBackend {
-	return NewTestSeeleBackendWithVerifier(nil)
+func NewTestScdoBackend() *TestScdoBackend {
+	return NewTestScdoBackendWithVerifier(nil)
 }
 
-func NewTestSeeleBackendWithVerifier(verifier types.DebtVerifier) *TestSeeleBackend {
-	scdoBeckend := &TestSeeleBackend{}
+func NewTestScdoBackendWithVerifier(verifier types.DebtVerifier) *TestScdoBackend {
+	scdoBeckend := &TestScdoBackend{}
 
 	scdoBeckend.blockchain = core.NewTestBlockchainWithVerifier(verifier)
 	scdoBeckend.debtPool = core.NewDebtPool(scdoBeckend.blockchain, verifier)
@@ -216,15 +216,15 @@ func NewTestSeeleBackendWithVerifier(verifier types.DebtVerifier) *TestSeeleBack
 	return scdoBeckend
 }
 
-func (t TestSeeleBackend) TxPool() *core.TransactionPool {
+func (t TestScdoBackend) TxPool() *core.TransactionPool {
 	return t.txPool
 }
 
-func (t TestSeeleBackend) DebtPool() *core.DebtPool {
+func (t TestScdoBackend) DebtPool() *core.DebtPool {
 	return t.debtPool
 }
 
-func (t TestSeeleBackend) BlockChain() *core.Blockchain {
+func (t TestScdoBackend) BlockChain() *core.Blockchain {
 	return t.blockchain
 }
 

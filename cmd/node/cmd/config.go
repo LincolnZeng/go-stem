@@ -77,24 +77,24 @@ func LoadConfigFromFile(configFile string, accounts string) (*node.Config, error
 	}
 
 	if len(config.BasicConfig.Coinbase) > 0 {
-		config.SeeleConfig.Coinbase = common.HexMustToAddres(config.BasicConfig.Coinbase)
+		config.ScdoConfig.Coinbase = common.HexMustToAddres(config.BasicConfig.Coinbase)
 	}
 
 	if len(config.BasicConfig.PrivateKey) > 0 {
-		config.SeeleConfig.CoinbasePrivateKey, err = crypto.LoadECDSAFromString(config.BasicConfig.PrivateKey)
+		config.ScdoConfig.CoinbasePrivateKey, err = crypto.LoadECDSAFromString(config.BasicConfig.PrivateKey)
 		if err != nil {
 			return config, err
 		}
 	}
-	config.P2PConfig.PrivateKey = config.SeeleConfig.CoinbasePrivateKey
-	config.SeeleConfig.TxConf = *core.DefaultTxPoolConfig()
-	config.SeeleConfig.GenesisConfig = cmdConfig.GenesisConfig
+	config.P2PConfig.PrivateKey = config.ScdoConfig.CoinbasePrivateKey
+	config.ScdoConfig.TxConf = *core.DefaultTxPoolConfig()
+	config.ScdoConfig.GenesisConfig = cmdConfig.GenesisConfig
 	comm.LogConfiguration.PrintLog = config.LogConfig.PrintLog
 	comm.LogConfiguration.IsDebug = config.LogConfig.IsDebug
 	comm.LogConfiguration.DataDir = config.BasicConfig.DataDir
 	config.BasicConfig.DataDir = filepath.Join(common.GetDefaultDataFolder(), config.BasicConfig.DataDir)
 	config.BasicConfig.DataSetDir = filepath.Join(common.GetTempFolder(), config.BasicConfig.DataDir)
-	fmt.Printf("loadConfigFile %+v", config.SeeleConfig.GenesisConfig)
+	fmt.Printf("loadConfigFile %+v", config.ScdoConfig.GenesisConfig)
 	return config, nil
 }
 
@@ -117,7 +117,7 @@ func CopyConfig(cmdConfig *util.Config) *node.Config {
 		HTTPServer:     cmdConfig.HTTPServer,
 		WSServerConfig: cmdConfig.WSServerConfig,
 		P2PConfig:      cmdConfig.P2PConfig,
-		SeeleConfig:    node.SeeleConfig{},
+		ScdoConfig:    node.ScdoConfig{},
 		MetricsConfig:  cmdConfig.MetricsConfig,
 	}
 	return config

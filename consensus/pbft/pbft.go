@@ -21,7 +21,7 @@ import (
 */
 type PBFTEngine struct {
 	threads  int
-	log      *log.SeeleLog
+	log      *log.ScdoLog
 	hashrate metrics.Meter
 }
 

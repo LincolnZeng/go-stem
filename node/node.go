@@ -22,7 +22,7 @@ import (
 // error infos
 var (
 	ErrConfigIsNull       = errors.New("config info is null")
-	ErrLogIsNull          = errors.New("SeeleLog is null")
+	ErrLogIsNull          = errors.New("ScdoLog is null")
 	ErrNodeRunning        = errors.New("node is already running")
 	ErrNodeStopped        = errors.New("node is not started")
 	ErrServiceStartFailed = errors.New("failed to start node service")
@@ -46,7 +46,7 @@ type Node struct {
 	server   *p2p.Server
 	services []Service
 
-	log  *log.SeeleLog
+	log  *log.ScdoLog
 	lock sync.RWMutex
 
 	tcpListener net.Listener // TCP RPC listener socket to serve API requests
@@ -147,7 +147,7 @@ func (n *Node) Start() error {
 }
 
 func (n *Node) checkConfig() error {
-	specificShard := n.config.SeeleConfig.GenesisConfig.ShardNumber
+	specificShard := n.config.ScdoConfig.GenesisConfig.ShardNumber
 	if specificShard == 0 {
 		// select a shard randomly
 		specificShard = uint(rand.Intn(common.ShardCount) + 1)
@@ -161,9 +161,9 @@ func (n *Node) checkConfig() error {
 	n.shard = specificShard
 	n.log.Info("local shard number is %d", common.LocalShardNumber)
 
-	if !n.config.SeeleConfig.Coinbase.Equal(common.Address{}) {
-		coinbaseShard := n.config.SeeleConfig.Coinbase.Shard()
-		n.log.Info("coinbase is %s", n.config.SeeleConfig.Coinbase.Hex())
+	if !n.config.ScdoConfig.Coinbase.Equal(common.Address{}) {
+		coinbaseShard := n.config.ScdoConfig.Coinbase.Shard()
+		n.log.Info("coinbase is %s", n.config.ScdoConfig.Coinbase.Hex())
 
 		if coinbaseShard != specificShard {
 			return fmt.Errorf("coinbase does not match with specific shard number, "+
@@ -175,7 +175,7 @@ func (n *Node) checkConfig() error {
 }
 
 func (n *Node) checkSubChainConfig() error {
-	specificShard := n.config.SeeleConfig.GenesisConfig.ShardNumber
+	specificShard := n.config.ScdoConfig.GenesisConfig.ShardNumber
 	if specificShard == 0 || specificShard > common.ShardCount {
 		// select a shard randomly
 		return fmt.Errorf("unsupported shard number, it must be in range [1, %d]", common.ShardCount)
@@ -185,9 +185,9 @@ func (n *Node) checkSubChainConfig() error {
 	n.shard = specificShard
 	n.log.Info("local shard number is %d", common.LocalShardNumber)
 
-	if !n.config.SeeleConfig.Coinbase.Equal(common.Address{}) {
-		coinbaseShard := n.config.SeeleConfig.Coinbase.Shard()
-		n.log.Info("coinbase is %s", n.config.SeeleConfig.Coinbase.Hex())
+	if !n.config.ScdoConfig.Coinbase.Equal(common.Address{}) {
+		coinbaseShard := n.config.ScdoConfig.Coinbase.Shard()
+		n.log.Info("coinbase is %s", n.config.ScdoConfig.Coinbase.Hex())
 
 		if coinbaseShard != specificShard {
 			return fmt.Errorf("coinbase does not match with specific shard number, "+
@@ -204,8 +204,8 @@ func (n *Node) startP2PServer() (*p2p.Server, error) {
 		protocols = append(protocols, service.Protocols()...)
 	}
 
-	p2pServer := p2p.NewServer(n.config.SeeleConfig.GenesisConfig, n.config.P2PConfig, protocols)
-	if err := p2pServer.Start(n.config.BasicConfig.DataDir, n.config.SeeleConfig.GenesisConfig.ShardNumber); err != nil {
+	p2pServer := p2p.NewServer(n.config.ScdoConfig.GenesisConfig, n.config.P2PConfig, protocols)
+	if err := p2pServer.Start(n.config.BasicConfig.DataDir, n.config.ScdoConfig.GenesisConfig.ShardNumber); err != nil {
 		return nil, ErrServiceStartFailed
 	}
 

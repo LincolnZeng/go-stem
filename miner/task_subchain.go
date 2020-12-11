@@ -39,7 +39,7 @@ package miner
 // }
 
 // // applyTransactionsAndDebts TODO need to check more about the transactions, such as gas limit
-// func (task *TaskSubChain) applyTransactions(scdo SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog) error {
+// func (task *TaskSubChain) applyTransactions(scdo ScdoBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.ScdoLog) error {
 // 	now := time.Now()
 // 	// entrance
 // 	memory.Print(log, "task applyTransactionsAndDebts entrance", now, false)
@@ -71,7 +71,7 @@ package miner
 // 	return nil
 // }
 
-// func (task *TaskSubChain) chooseDebts(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog) int {
+// func (task *TaskSubChain) chooseDebts(scdo ScdoBackend, statedb *state.Statedb, log *log.ScdoLog) int {
 // 	now := time.Now()
 // 	// entrance
 // 	memory.Print(log, "task chooseDebts entrance", now, false)
@@ -124,7 +124,7 @@ package miner
 // 	return reward, nil
 // }
 
-// func (task *TaskSubChain) chooseTransactions(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int) {
+// func (task *TaskSubChain) chooseTransactions(scdo ScdoBackend, statedb *state.Statedb, log *log.ScdoLog, size int) {
 // 	now := time.Now()
 // 	// entrance
 // 	memory.Print(log, "task chooseTransactions entrance", now, false)

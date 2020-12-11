@@ -33,7 +33,7 @@ func (scdoBackend *TestScdoBackend) DebtPool() *core.DebtPool {
 	return nil
 }
 
-func NewTestSeeleBackend() *TestScdoBackend {
+func NewTestScdoBackend() *TestScdoBackend {
 	scdoBackend := &TestScdoBackend{}
 	return scdoBackend
 }
@@ -61,7 +61,7 @@ func newTestTx(t *testing.T, amount int64, nonce uint64) *types.Transaction {
 
 func newTestDownloader(db database.Database) *Downloader {
 	bc := core.NewTestBlockchain()
-	scdo := NewTestSeeleBackend()
+	scdo := NewTestScdoBackend()
 	d := NewDownloader(bc, scdo)
 	d.tm = newTaskMgr(d, d.masterPeer, nil, 1, 2, 1, nil)
 

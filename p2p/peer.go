@@ -33,12 +33,12 @@ type Peer struct {
 	rw            *connection
 
 	wg   sync.WaitGroup
-	log  *log.SeeleLog
+	log  *log.ScdoLog
 	lock sync.Mutex
 }
 
 // NewPeer creates and returns a new peer.
-func NewPeer(conn *connection, log *log.SeeleLog, node *discovery.Node) *Peer {
+func NewPeer(conn *connection, log *log.ScdoLog, node *discovery.Node) *Peer {
 	closed := make(chan struct{})
 
 	return &Peer{
@@ -164,10 +164,10 @@ func (p *Peer) notifyProtocolsAddPeer() {
 					proto.bQuited = true
 
 					// scdo protocol is the highest weight, tcp of peer need to be closed
-					if proto.Name == common.SeeleProtoName {
+					if proto.Name == common.ScdoProtoName {
 						p.log.Debug("notifyProtocolsAddPeer AddPeer err got. name=%s node=%s", proto.Name, fmt.Sprintf("%x", p.Node.ID))
 						// close connection of peer
-						p.Disconnect("Seeleproto addpeer err, close connection")
+						p.Disconnect("Scdoproto addpeer err, close connection")
 					}
 				}
 			}

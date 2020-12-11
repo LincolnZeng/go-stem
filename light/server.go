@@ -23,12 +23,12 @@ import (
 type ServiceServer struct {
 	p2pServer     *p2p.Server
 	scdoProtocol *LightProtocol
-	log           *log.SeeleLog
+	log           *log.ScdoLog
 	shard         uint
 }
 
 // NewServiceServer create ServiceServer
-func NewServiceServer(service *scdo.SeeleService, conf *node.Config, log *log.SeeleLog, shard uint) (*ServiceServer, error) {
+func NewServiceServer(service *scdo.ScdoService, conf *node.Config, log *log.ScdoLog, shard uint) (*ServiceServer, error) {
 	scdoProtocol, err := NewLightProtocol(conf.P2PConfig.NetworkID, service.TxPool(), service.DebtPool(), service.BlockChain(), true, nil, log, shard)
 	if err != nil {
 		return nil, err

@@ -13,11 +13,11 @@ import (
 
 // TransactionPoolAPI provides an API to access transaction pool information.
 type TransactionPoolAPI struct {
-	s *SeeleService
+	s *ScdoService
 }
 
 // NewTransactionPoolAPI creates a new PrivateTransactionPoolAPI object for transaction pool rpc service.
-func NewTransactionPoolAPI(s *SeeleService) *TransactionPoolAPI {
+func NewTransactionPoolAPI(s *ScdoService) *TransactionPoolAPI {
 	return &TransactionPoolAPI{s}
 }
 

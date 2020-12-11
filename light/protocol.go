@@ -117,18 +117,18 @@ type LightProtocol struct {
 	quitCh              chan struct{}
 	syncCh              chan struct{}
 	chainHeaderChangeCh chan common.Hash
-	log                 *log.SeeleLog
+	log                 *log.ScdoLog
 
 	shard uint
 }
 
 // NewLightProtocol create LightProtocol
 func NewLightProtocol(networkID string, txPool TransactionPool, debtPool *core.DebtPool, chain BlockChain, serverMode bool, odrBackend *odrBackend,
-	log *log.SeeleLog, shard uint) (s *LightProtocol, err error) {
+	log *log.ScdoLog, shard uint) (s *LightProtocol, err error) {
 	s = &LightProtocol{
 		Protocol: p2p.Protocol{
 			Name:    fmt.Sprintf("%s_%d", LightProtoName, shard),
-			Version: LightSeeleVersion,
+			Version: LightScdoVersion,
 			Length:  protocolMsgCodeLength,
 		},
 		bServerMode: serverMode,
@@ -246,7 +246,7 @@ func (lp *LightProtocol) handleAddPeer(p2pPeer *p2p.Peer, rw p2p.MsgReadWriter) 
 		return false
 	}
 
-	newPeer := newPeer(LightSeeleVersion, p2pPeer, rw, lp.log, lp)
+	newPeer := newPeer(LightScdoVersion, p2pPeer, rw, lp.log, lp)
 	store := lp.chain.GetStore()
 	hash, err := store.GetHeadBlockHash()
 	if err != nil {

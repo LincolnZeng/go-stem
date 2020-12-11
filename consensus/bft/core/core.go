@@ -20,7 +20,7 @@ type core struct {
 	config  *bft.BFTConfig
 	address common.Address
 	state   State
-	log     *log.SeeleLog
+	log     *log.ScdoLog
 
 	server                bft.Server
 	events                *event.TypeMuxSubscription

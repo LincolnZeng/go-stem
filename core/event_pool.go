@@ -26,7 +26,7 @@ type EventPool struct {
 
 	position uint64
 
-	log   *log.SeeleLog
+	log   *log.ScdoLog
 	chain blockchain
 	// todo add deal pools
 }

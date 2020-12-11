@@ -15,14 +15,14 @@ import (
 
 const (
 
-	// SeeleProtoName protoName of Scdo service
-	SeeleProtoName = "scdo"
+	// ScdoProtoName protoName of Scdo service
+	ScdoProtoName = "scdo"
 
-	// SeeleVersion Version number of Scdo protocol
-	SeeleVersion uint = 1
+	// ScdoVersion Version number of Scdo protocol
+	ScdoVersion uint = 1
 
-	// SeeleVersion for simpler display
-	SeeleNodeVersion string = "v1.0.0"
+	// ScdoVersion for simpler display
+	ScdoNodeVersion string = "v1.0.0"
 
 	// ShardCount represents the total number of shards.
 	ShardCount = 4

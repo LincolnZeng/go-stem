@@ -90,9 +90,9 @@ var startCmd = &cobra.Command{
 
 		var engine consensus.Engine
 		if nCfg.BasicConfig.MinerAlgorithm == common.BFTEngine {
-			engine, err = factory.GetBFTEngine(nCfg.SeeleConfig.CoinbasePrivateKey, nCfg.BasicConfig.DataDir)
+			engine, err = factory.GetBFTEngine(nCfg.ScdoConfig.CoinbasePrivateKey, nCfg.BasicConfig.DataDir)
 		} else if nCfg.BasicConfig.MinerAlgorithm == common.BFTSubchainEngine {
-			engine, err = factory.GetBFTSubchainEngine(nCfg.SeeleConfig.CoinbasePrivateKey, nCfg.BasicConfig.DataDir)
+			engine, err = factory.GetBFTSubchainEngine(nCfg.ScdoConfig.CoinbasePrivateKey, nCfg.BasicConfig.DataDir)
 		} else {
 			engine, err = factory.GetConsensusEngine(nCfg.BasicConfig.MinerAlgorithm, nCfg.BasicConfig.DataSetDir)
 		}
@@ -142,7 +142,7 @@ var startCmd = &cobra.Command{
 			}
 
 			// fullnode mode
-			scdoService, err := scdo.NewSeeleService(ctx, nCfg, slog, engine, manager, startHeight)
+			scdoService, err := scdo.NewScdoService(ctx, nCfg, slog, engine, manager, startHeight)
 			if err != nil {
 				fmt.Println(err.Error())
 				return
@@ -206,7 +206,7 @@ var startCmd = &cobra.Command{
 				nCfg.BasicConfig.Name,
 				nCfg.BasicConfig.Version,
 				nCfg.P2PConfig.NetworkID,
-				nCfg.SeeleConfig.Coinbase,
+				nCfg.ScdoConfig.Coinbase,
 			)
 		}
 

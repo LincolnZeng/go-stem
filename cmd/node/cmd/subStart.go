@@ -76,7 +76,7 @@ var substartCmd = &cobra.Command{
 		var engine consensus.Engine
 		if subCfg.BasicConfig.MinerAlgorithm == common.BFTSubchainEngine {
 			// TODO privateKey can pass with keyfile.
-			engine, err = factory.GetBFTSubchainEngine(subCfg.SeeleConfig.CoinbasePrivateKey, subCfg.BasicConfig.DataDir) // SeeleConfig->coinbase privateKey
+			engine, err = factory.GetBFTSubchainEngine(subCfg.ScdoConfig.CoinbasePrivateKey, subCfg.BasicConfig.DataDir) // ScdoConfig->coinbase privateKey
 		} else {
 			engine, err = factory.GetConsensusEngine(subCfg.BasicConfig.MinerAlgorithm, subCfg.BasicConfig.DataSetDir)
 		}
@@ -107,10 +107,10 @@ var substartCmd = &cobra.Command{
 			fmt.Printf("create light client manager failed. %s\n", err)
 			return
 		}
-		// subservice, err := scdo.NewSeeleServiceSubchain(sctxt, subCfg, sclog, engine)
+		// subservice, err := scdo.NewScdoServiceSubchain(sctxt, subCfg, sclog, engine)
 		// when new scdoServices, all iniate works will done inside it
 		// 5.1
-		subservice, err := scdo.NewSeeleService(sctxt, subCfg, sclog, engine, submanager, startHeight)
+		subservice, err := scdo.NewScdoService(sctxt, subCfg, sclog, engine, submanager, startHeight)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -176,7 +176,7 @@ var substartCmd = &cobra.Command{
 				subCfg.BasicConfig.Name,
 				subCfg.BasicConfig.Version,
 				subCfg.P2PConfig.NetworkID,
-				subCfg.SeeleConfig.Coinbase,
+				subCfg.ScdoConfig.Coinbase,
 			)
 		}
 

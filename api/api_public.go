@@ -21,18 +21,18 @@ var ErrInvalidAccount = errors.New("invalid account")
 
 const maxSizeLimit = 64
 
-// PublicSeeleAPI provides an API to access full node-related information.
-type PublicSeeleAPI struct {
+// PublicScdoAPI provides an API to access full node-related information.
+type PublicScdoAPI struct {
 	s Backend
 }
 
-// NewPublicSeeleAPI creates a new PublicSeeleAPI object for rpc service.
-func NewPublicSeeleAPI(s Backend) *PublicSeeleAPI {
-	return &PublicSeeleAPI{s}
+// NewPublicScdoAPI creates a new PublicScdoAPI object for rpc service.
+func NewPublicScdoAPI(s Backend) *PublicScdoAPI {
+	return &PublicScdoAPI{s}
 }
 
 // GetBalance get balance of the account.
-func (api *PublicSeeleAPI) GetBalance(account common.Address, hexHash string, height int64) (*GetBalanceResponse, error) {
+func (api *PublicScdoAPI) GetBalance(account common.Address, hexHash string, height int64) (*GetBalanceResponse, error) {
 	if account.IsEmpty() {
 		return nil, ErrInvalidAccount
 	}
@@ -59,7 +59,7 @@ func (api *PublicSeeleAPI) GetBalance(account common.Address, hexHash string, he
 	return &info, nil
 }
 
-func (api *PublicSeeleAPI) getStatedb(hexHash string, height int64) (*state.Statedb, error) {
+func (api *PublicScdoAPI) getStatedb(hexHash string, height int64) (*state.Statedb, error) {
 	var blockHash common.Hash
 	var err error
 
@@ -82,7 +82,7 @@ func (api *PublicSeeleAPI) getStatedb(hexHash string, height int64) (*state.Stat
 }
 
 // GetAccountNonce get account next used nonce
-func (api *PublicSeeleAPI) GetAccountNonce(account common.Address, hexHash string, height int64) (uint64, error) {
+func (api *PublicScdoAPI) GetAccountNonce(account common.Address, hexHash string, height int64) (uint64, error) {
 	if account.Equal(common.EmptyAddress) {
 		return 0, ErrInvalidAccount
 	}
@@ -99,7 +99,7 @@ func (api *PublicSeeleAPI) GetAccountNonce(account common.Address, hexHash strin
 }
 
 // GetAccountTxCount get account tx count
-func (api *PublicSeeleAPI) GetAccountTxCount(account common.Address, hexHash string, height int64) (uint64, error) {
+func (api *PublicScdoAPI) GetAccountTxCount(account common.Address, hexHash string, height int64) (uint64, error) {
 	if account.Equal(common.EmptyAddress) {
 		return 0, ErrInvalidAccount
 	}
@@ -116,13 +116,13 @@ func (api *PublicSeeleAPI) GetAccountTxCount(account common.Address, hexHash str
 }
 
 // GetBlockHeight get the block height of the chain head
-func (api *PublicSeeleAPI) GetBlockHeight() (uint64, error) {
+func (api *PublicScdoAPI) GetBlockHeight() (uint64, error) {
 	header := api.s.ChainBackend().CurrentHeader()
 	return header.Height, nil
 }
 
 // GetBlock returns the requested block.
-func (api *PublicSeeleAPI) GetBlock(hashHex string, height int64, fulltx bool) (map[string]interface{}, error) {
+func (api *PublicScdoAPI) GetBlock(hashHex string, height int64, fulltx bool) (map[string]interface{}, error) {
 	if len(hashHex) > 0 {
 		return api.GetBlockByHash(hashHex, fulltx)
 	}
@@ -132,7 +132,7 @@ func (api *PublicSeeleAPI) GetBlock(hashHex string, height int64, fulltx bool) (
 
 // GetBlockByHeight returns the requested block. When blockNr is less than 0 the chain head is returned. When fullTx is true all
 // transactions in the block are returned in full detail, otherwise only the transaction hash is returned
-func (api *PublicSeeleAPI) GetBlockByHeight(height int64, fulltx bool) (map[string]interface{}, error) {
+func (api *PublicScdoAPI) GetBlockByHeight(height int64, fulltx bool) (map[string]interface{}, error) {
 	block, err := api.s.GetBlock(common.EmptyHash, height)
 	if err != nil {
 		return nil, err
@@ -147,7 +147,7 @@ func (api *PublicSeeleAPI) GetBlockByHeight(height int64, fulltx bool) (map[stri
 // GetBlocks returns the size of requested block. When the blockNr is -1 the chain head is returned.
 //When the size is greater than 64, the size will be set to 64.When it's -1 that the blockNr minus size, the blocks in 64 is returned.
 // When fullTx is true all transactions in the block are returned in full detail, otherwise only the transaction hash is returned
-func (api *PublicSeeleAPI) GetBlocks(height int64, fulltx bool, size uint) ([]map[string]interface{}, error) {
+func (api *PublicScdoAPI) GetBlocks(height int64, fulltx bool, size uint) ([]map[string]interface{}, error) {
 	blocks := make([]*types.Block, 0)
 	totalDifficultys := make([]*big.Int, 0)
 	if height < 0 {
@@ -191,7 +191,7 @@ func (api *PublicSeeleAPI) GetBlocks(height int64, fulltx bool, size uint) ([]ma
 
 // GetBlockByHash returns the requested block. When fullTx is true all transactions in the block are returned in full
 // detail, otherwise only the transaction hash is returned
-func (api *PublicSeeleAPI) GetBlockByHash(hashHex string, fulltx bool) (map[string]interface{}, error) {
+func (api *PublicScdoAPI) GetBlockByHash(hashHex string, fulltx bool) (map[string]interface{}, error) {
 	hash, err := common.HexToHash(hashHex)
 	if err != nil {
 		return nil, err
@@ -281,7 +281,7 @@ func PrintableOutputTx(tx *types.Transaction) map[string]interface{} {
 }
 
 // AddTx add a tx to miner
-func (api *PublicSeeleAPI) AddTx(tx types.Transaction) (bool, error) {
+func (api *PublicScdoAPI) AddTx(tx types.Transaction) (bool, error) {
 	shard := tx.Data.From.Shard()
 	var err error
 	if shard != common.LocalShardNumber {
@@ -299,9 +299,9 @@ func (api *PublicSeeleAPI) AddTx(tx types.Transaction) (bool, error) {
 	return true, nil
 }
 
-func (api *PublicSeeleAPI) IsSyncing() bool {
+func (api *PublicScdoAPI) IsSyncing() bool {
 	return api.s.IsSyncing()
 }
 
 // Always listening
-func (api *PublicSeeleAPI) IsListening() bool { return true }
+func (api *PublicScdoAPI) IsListening() bool { return true }

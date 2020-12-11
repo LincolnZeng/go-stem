@@ -17,7 +17,7 @@ type core struct {
 	config  *istanbul.Config
 	address common.Address
 	state   State
-	log  *log.SeeleLog
+	log  *log.ScdoLog
 
 	backend               istanbul.Backend
 	events                *event.TypeMuxSubscription

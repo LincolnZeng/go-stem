@@ -86,7 +86,7 @@ var setCmd = &cobra.Command{
 		bigIntBalance := new(big.Int).SetUint64(balance)
 		statedb.SetBalance(addr, bigIntBalance)
 
-		fmt.Println("Set the balance successfully, the balance of the account is ", common.BigToDecimal(bigIntBalance.Mul(bigIntBalance, common.SeeleToFan)))
+		fmt.Println("Set the balance successfully, the balance of the account is ", common.BigToDecimal(bigIntBalance.Mul(bigIntBalance, common.ScdoToFan)))
 	},
 }
 
@@ -108,6 +108,6 @@ var getCmd = &cobra.Command{
 			return
 		}
 
-		fmt.Println("The balance of the account is ", common.BigToDecimal(statedb.GetBalance(addr).Mul(statedb.GetBalance(addr), common.SeeleToFan)))
+		fmt.Println("The balance of the account is ", common.BigToDecimal(statedb.GetBalance(addr).Mul(statedb.GetBalance(addr), common.ScdoToFan)))
 	},
 }

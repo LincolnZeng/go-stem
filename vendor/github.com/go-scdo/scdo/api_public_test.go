@@ -24,7 +24,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_PublicSeeleAPI(t *testing.T) {
+func Test_PublicScdoAPI(t *testing.T) {
 	conf := getTmpConfig()
 	serviceContext := ServiceContext{
 		DataDir: filepath.Join(common.GetTempFolder(), ".PublicScdoAPI"),
@@ -39,7 +39,7 @@ func Test_PublicSeeleAPI(t *testing.T) {
 		t.Fatal()
 	}
 
-	api := NewPublicSeeleAPI(ss)
+	api := NewPublicScdoAPI(ss)
 	defer func() {
 		api.s.Stop()
 		os.RemoveAll(dataDir)
@@ -125,7 +125,7 @@ func newTestAPI(t *testing.T, dbPath string) *PublicScdoAPI {
 	log := log.GetLogger("scdo")
 	ss, err := NewScdoService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	assert.Equal(t, err, nil)
-	return NewPublicSeeleAPI(ss)
+	return NewPublicScdoAPI(ss)
 }
 
 func sendTx(t *testing.T, api *PublicScdoAPI, statedb *state.Statedb, tx *types.Transaction) []byte {
@@ -202,7 +202,7 @@ func Test_Call(t *testing.T) {
 	assert.Equal(t, result["result"], "0x0000000000000000000000000000000000000000000000000000000000000017")
 
 	// Verify the history result = 5
-	height, err := api2.NewPublicSeeleAPI(NewScdoBackend(api.s)).GetBlockHeight()
+	height, err := api2.NewPublicScdoAPI(NewScdoBackend(api.s)).GetBlockHeight()
 	assert.Equal(t, err, nil)
 	result, err = api.Call(contractAddress.Hex(), payload, int64(height-1))
 	assert.Equal(t, err, nil)

@@ -49,7 +49,7 @@ type core struct {
 	config  *istanbul.Config
 	address common.Address
 	state   State
-	logger  *log.SeeleLog
+	logger  *log.ScdoLog
 
 	backend               istanbul.Backend
 	events                *event.TypeMuxSubscription

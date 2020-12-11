@@ -29,8 +29,8 @@ type Config struct {
 	// HttpServer config for http server
 	HTTPServer HTTPServer
 
-	// The SeeleConfig is the configuration to create the scdo service.
-	SeeleConfig SeeleConfig
+	// The ScdoConfig is the configuration to create the scdo service.
+	ScdoConfig ScdoConfig
 
 	// The configuration of websocket rpc service
 	WSServerConfig WSServerConfig
@@ -101,7 +101,7 @@ type WSServerConfig struct {
 }
 
 // Config is the scdo's configuration to create scdo service
-type SeeleConfig struct {
+type ScdoConfig struct {
 	TxConf core.TransactionPoolConfig
 
 	Coinbase common.Address

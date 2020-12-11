@@ -49,7 +49,7 @@ func NewTask(header *types.BlockHeader, coinbase common.Address, verifier types.
 }
 
 // applyTransactionsAndDebts TODO need to check more about the transactions, such as gas limit
-func (task *Task) applyTransactionsAndDebts(scdo SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog) error {
+func (task *Task) applyTransactionsAndDebts(scdo ScdoBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.ScdoLog) error {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task applyTransactionsAndDebts entrance", now, false)
@@ -87,7 +87,7 @@ func (task *Task) applyTransactionsAndDebts(scdo SeeleBackend, statedb *state.St
 }
 
 //applyTransactionsSubchain apply txs for subchain
-func (task *Task) applyTransactionsSubchain(scdo SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog, revertedTxHash *common.Hash) error {
+func (task *Task) applyTransactionsSubchain(scdo ScdoBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.ScdoLog, revertedTxHash *common.Hash) error {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task applyTransactionsAndDebts entrance", now, false)
@@ -120,7 +120,7 @@ func (task *Task) applyTransactionsSubchain(scdo SeeleBackend, statedb *state.St
 	return nil
 }
 
-func (task *Task) chooseDebts(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog) int {
+func (task *Task) chooseDebts(scdo ScdoBackend, statedb *state.Statedb, log *log.ScdoLog) int {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task chooseDebts entrance", now, false)
@@ -173,7 +173,7 @@ func (task *Task) handleMinerRewardTx(statedb *state.Statedb) (*big.Int, error) 
 	return reward, nil
 }
 
-func (task *Task) chooseTransactions(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int) {
+func (task *Task) chooseTransactions(scdo ScdoBackend, statedb *state.Statedb, log *log.ScdoLog, size int) {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task chooseTransactions entrance", now, false)
@@ -266,7 +266,7 @@ func (task *Task) chooseTransactions(scdo SeeleBackend, statedb *state.Statedb, 
 	memory.Print(log, "task chooseTransactions exit", now, true)
 }
 
-func (task *Task) chooseTransactionsSubchain(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int, revertedTxHash *common.Hash) {
+func (task *Task) chooseTransactionsSubchain(scdo ScdoBackend, statedb *state.Statedb, log *log.ScdoLog, size int, revertedTxHash *common.Hash) {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task chooseTransactions entrance", now, false)

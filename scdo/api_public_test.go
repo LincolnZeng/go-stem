@@ -24,22 +24,22 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_PublicSeeleAPI(t *testing.T) {
+func Test_PublicScdoAPI(t *testing.T) {
 	conf := getTmpConfig()
 	serviceContext := ServiceContext{
-		DataDir: filepath.Join(common.GetTempFolder(), ".PublicSeeleAPI"),
+		DataDir: filepath.Join(common.GetTempFolder(), ".PublicScdoAPI"),
 	}
 
 	var key interface{} = "ServiceContext"
 	ctx := context.WithValue(context.Background(), key, serviceContext)
 	dataDir := ctx.Value("ServiceContext").(ServiceContext).DataDir
 	log := log.GetLogger("scdo")
-	ss, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
+	ss, err := NewScdoService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
 		t.Fatal()
 	}
 
-	api := NewPublicSeeleAPI(ss)
+	api := NewPublicScdoAPI(ss)
 	defer func() {
 		api.s.Stop()
 		os.RemoveAll(dataDir)
@@ -47,7 +47,7 @@ func Test_PublicSeeleAPI(t *testing.T) {
 	var info api2.GetMinerInfo
 	info, err = api.GetInfo()
 	assert.Equal(t, err, nil)
-	if !bytes.Equal(conf.SeeleConfig.Coinbase[0:], info.Coinbase[0:]) {
+	if !bytes.Equal(conf.ScdoConfig.Coinbase[0:], info.Coinbase[0:]) {
 		t.Fail()
 	}
 }
@@ -115,7 +115,7 @@ func Test_GetLogs(t *testing.T) {
 	assert.Error(t, err)
 }
 
-func newTestAPI(t *testing.T, dbPath string) *PublicSeeleAPI {
+func newTestAPI(t *testing.T, dbPath string) *PublicScdoAPI {
 	conf := getTmpConfig()
 	serviceContext := ServiceContext{
 		DataDir: dbPath,
@@ -123,12 +123,12 @@ func newTestAPI(t *testing.T, dbPath string) *PublicSeeleAPI {
 	var key interface{} = "ServiceContext"
 	ctx := context.WithValue(context.Background(), key, serviceContext)
 	log := log.GetLogger("scdo")
-	ss, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
+	ss, err := NewScdoService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	assert.Equal(t, err, nil)
-	return NewPublicSeeleAPI(ss)
+	return NewPublicScdoAPI(ss)
 }
 
-func sendTx(t *testing.T, api *PublicSeeleAPI, statedb *state.Statedb, tx *types.Transaction) []byte {
+func sendTx(t *testing.T, api *PublicScdoAPI, statedb *state.Statedb, tx *types.Transaction) []byte {
 	receipt, err := api.s.chain.ApplyTransaction(tx, 0, api.s.miner.GetCoinbase(), statedb, api.s.chain.CurrentBlock().Header)
 	assert.Equal(t, err, nil)
 	assert.Equal(t, receipt.Failed, false)
@@ -148,7 +148,7 @@ func sendTx(t *testing.T, api *PublicSeeleAPI, statedb *state.Statedb, tx *types
 func getFromAddress(statedb *state.Statedb) common.Address {
 	from := *crypto.MustGenerateRandomAddress()
 	statedb.CreateAccount(from)
-	statedb.SetBalance(from, common.SeeleToFan)
+	statedb.SetBalance(from, common.ScdoToFan)
 	statedb.SetNonce(from, 0)
 	return from
 }
@@ -202,7 +202,7 @@ func Test_Call(t *testing.T) {
 	assert.Equal(t, result["result"], "0x0000000000000000000000000000000000000000000000000000000000000017")
 
 	// Verify the history result = 5
-	height, err := api2.NewPublicSeeleAPI(NewSeeleBackend(api.s)).GetBlockHeight()
+	height, err := api2.NewPublicScdoAPI(NewScdoBackend(api.s)).GetBlockHeight()
 	assert.Equal(t, err, nil)
 	result, err = api.Call(contractAddress.Hex(), payload, int64(height-1))
 	assert.Equal(t, err, nil)

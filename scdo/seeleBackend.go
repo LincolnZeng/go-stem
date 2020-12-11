@@ -12,35 +12,35 @@ import (
 	"github.com/scdoproject/go-stem/scdo/download"
 )
 
-type SeeleBackend struct {
-	s *SeeleService
+type ScdoBackend struct {
+	s *ScdoService
 }
 
-// NewSeeleBackend backend
-func NewSeeleBackend(s *SeeleService) *SeeleBackend {
-	return &SeeleBackend{s}
+// NewScdoBackend backend
+func NewScdoBackend(s *ScdoService) *ScdoBackend {
+	return &ScdoBackend{s}
 }
 
 // TxPoolBackend tx pool
-func (sd *SeeleBackend) TxPoolBackend() api.Pool { return sd.s.txPool }
+func (sd *ScdoBackend) TxPoolBackend() api.Pool { return sd.s.txPool }
 
 // GetNetVersion net version
-func (sd *SeeleBackend) GetNetVersion() string { return sd.s.netVersion }
+func (sd *ScdoBackend) GetNetVersion() string { return sd.s.netVersion }
 
 // GetNetWorkID net id
-func (sd *SeeleBackend) GetNetWorkID() string { return sd.s.networkID }
+func (sd *ScdoBackend) GetNetWorkID() string { return sd.s.networkID }
 
 // GetP2pServer p2p server
-func (sd *SeeleBackend) GetP2pServer() *p2p.Server { return sd.s.p2pServer }
+func (sd *ScdoBackend) GetP2pServer() *p2p.Server { return sd.s.p2pServer }
 
 // ChainBackend block chain db
-func (sd *SeeleBackend) ChainBackend() api.Chain { return sd.s.chain }
+func (sd *ScdoBackend) ChainBackend() api.Chain { return sd.s.chain }
 
 // Log return log pointer
-func (sd *SeeleBackend) Log() *log.SeeleLog { return sd.s.log }
+func (sd *ScdoBackend) Log() *log.ScdoLog { return sd.s.log }
 
 // IsSyncing check status
-func (sd *SeeleBackend) IsSyncing() bool {
+func (sd *ScdoBackend) IsSyncing() bool {
 	scdoserviceAPI := sd.s.APIs()[5]
 	d := scdoserviceAPI.Service.(downloader.PrivatedownloaderAPI)
 
@@ -48,10 +48,10 @@ func (sd *SeeleBackend) IsSyncing() bool {
 }
 
 // ProtocolBackend return protocol
-func (sd *SeeleBackend) ProtocolBackend() api.Protocol { return sd.s.scdoProtocol }
+func (sd *ScdoBackend) ProtocolBackend() api.Protocol { return sd.s.scdoProtocol }
 
 // GetBlock returns the requested block by hash or height
-func (sd *SeeleBackend) GetBlock(hash common.Hash, height int64) (*types.Block, error) {
+func (sd *ScdoBackend) GetBlock(hash common.Hash, height int64) (*types.Block, error) {
 	var block *types.Block
 	var err error
 	if !hash.IsEmpty() {
@@ -76,13 +76,13 @@ func (sd *SeeleBackend) GetBlock(hash common.Hash, height int64) (*types.Block, 
 }
 
 // GetBlockTotalDifficulty return total difficulty
-func (sd *SeeleBackend) GetBlockTotalDifficulty(hash common.Hash) (*big.Int, error) {
+func (sd *ScdoBackend) GetBlockTotalDifficulty(hash common.Hash) (*big.Int, error) {
 	store := sd.s.chain.GetStore()
 	return store.GetBlockTotalDifficulty(hash)
 }
 
 // GetReceiptByTxHash get receipt by transaction hash
-func (sd *SeeleBackend) GetReceiptByTxHash(hash common.Hash) (*types.Receipt, error) {
+func (sd *ScdoBackend) GetReceiptByTxHash(hash common.Hash) (*types.Receipt, error) {
 	store := sd.s.chain.GetStore()
 	receipt, err := store.GetReceiptByTxHash(hash)
 	if err != nil {
@@ -92,6 +92,6 @@ func (sd *SeeleBackend) GetReceiptByTxHash(hash common.Hash) (*types.Receipt, er
 }
 
 // GetTransaction return tx
-func (sd *SeeleBackend) GetTransaction(pool api.PoolCore, bcStore store.BlockchainStore, txHash common.Hash) (*types.Transaction, *api.BlockIndex, error) {
+func (sd *ScdoBackend) GetTransaction(pool api.PoolCore, bcStore store.BlockchainStore, txHash common.Hash) (*types.Transaction, *api.BlockIndex, error) {
 	return api.GetTransaction(pool, bcStore, txHash)
 }

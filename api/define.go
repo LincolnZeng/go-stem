@@ -22,7 +22,7 @@ type Backend interface {
 	TxPoolBackend() Pool
 	ChainBackend() Chain
 	ProtocolBackend() Protocol
-	Log() *log.SeeleLog
+	Log() *log.ScdoLog
 	IsSyncing() bool
 
 	GetBlock(hash common.Hash, height int64) (*types.Block, error)
@@ -61,7 +61,7 @@ func GetAPIs(apiBackend Backend) []rpc.API {
 		{
 			Namespace: "scdo",
 			Version:   "1.0",
-			Service:   NewPublicSeeleAPI(apiBackend),
+			Service:   NewPublicScdoAPI(apiBackend),
 			Public:    true,
 		},
 		{

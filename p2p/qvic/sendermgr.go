@@ -20,7 +20,7 @@ type SenderMgr struct {
 	udpfd *net.UDPConn
 
 	loopWG sync.WaitGroup
-	log    *log.SeeleLog
+	log    *log.ScdoLog
 
 	senderSlice          []*VPacket
 	qconn                *QConn

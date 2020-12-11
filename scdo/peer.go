@@ -61,14 +61,14 @@ type peer struct {
 	knownBlocks *lru.Cache // Set of block hashes known by this peer
 	knownDebts  *lru.Cache // Set of debt hashes known by this peer
 
-	log *log.SeeleLog
+	log *log.ScdoLog
 }
 
 func idToStr(id common.Address) string {
 	return fmt.Sprintf("%x", id[:8])
 }
 
-func newPeer(version uint, p *p2p.Peer, rw p2p.MsgReadWriter, log *log.SeeleLog) *peer {
+func newPeer(version uint, p *p2p.Peer, rw p2p.MsgReadWriter, log *log.ScdoLog) *peer {
 	knownTxsCache, err := lru.New(maxKnownTxs)
 	if err != nil {
 		panic(err)
@@ -298,7 +298,7 @@ func (p *peer) sendHeadStatus(msg *chainHeadStatus) error {
 // handShake exchange networkid td etc between two connected peers.
 func (p *peer) handShake(networkID string, td *big.Int, head common.Hash, genesis common.Hash, difficult uint64) error {
 	msg := &statusData{
-		ProtocolVersion: uint32(common.SeeleVersion),
+		ProtocolVersion: uint32(common.ScdoVersion),
 		NetworkID:       networkID,
 		TD:              td,
 		CurrentBlock:    head,

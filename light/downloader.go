@@ -32,7 +32,7 @@ type Downloader struct {
 	syncStatus int32
 	chain      BlockChain
 	wg         sync.WaitGroup
-	log        *log.SeeleLog
+	log        *log.ScdoLog
 	lock       sync.RWMutex
 }
 

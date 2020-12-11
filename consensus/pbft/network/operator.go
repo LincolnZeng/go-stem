@@ -20,7 +20,7 @@ type Node struct {
 	MsgEntrance   chan interface{}
 	MsgDelivery   chan interface{}
 	Alarm         chan bool
-	log           *log.SeeleLog
+	log           *log.ScdoLog
 }
 
 type MsgBuffer struct {
@@ -49,14 +49,14 @@ func NewNode(nodeID string) *Node {
 		// Hard-coded for test.
 		NodeID: nodeID,
 		NodeTable: map[string]string{
-			"Seele1": "localhost:1111",
-			"Seele2": "localhost:1112",
-			"Seele3": "localhost:1113",
-			"Seele4": "localhost:1114",
+			"Scdo1": "localhost:1111",
+			"Scdo2": "localhost:1112",
+			"Scdo3": "localhost:1113",
+			"Scdo4": "localhost:1114",
 		},
 		View: &View{
 			ID:      viewID,
-			Primary: "Seele1",
+			Primary: "Scdo1",
 		},
 
 		// Consensus-related struct
