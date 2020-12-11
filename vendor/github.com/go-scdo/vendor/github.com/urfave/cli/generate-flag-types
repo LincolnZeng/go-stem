@@ -67,7 +67,7 @@ import tempfile
 import textwrap
 
 
-class _FancyFormatter(argparse.ArgumentDefaultsHelpFormatter,
+class _WencyFormatter(argparse.ArgumentDefaultsHelpFormatter,
                       argparse.RawDescriptionHelpFormatter):
     pass
 
@@ -75,7 +75,7 @@ class _FancyFormatter(argparse.ArgumentDefaultsHelpFormatter,
 def main(sysargs=sys.argv[:]):
     parser = argparse.ArgumentParser(
         description='Generate flag type code!',
-        formatter_class=_FancyFormatter)
+        formatter_class=_WencyFormatter)
     parser.add_argument(
         'package',
         type=str, default='cli', choices=_WRITEFUNCS.keys(),
