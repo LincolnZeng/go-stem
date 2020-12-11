@@ -29,7 +29,7 @@ type Config struct {
 	// HttpServer config for http server
 	HTTPServer HTTPServer
 
-	// The SeeleConfig is the configuration to create the seele service.
+	// The SeeleConfig is the configuration to create the scdo service.
 	SeeleConfig SeeleConfig
 
 	// The configuration of websocket rpc service
@@ -100,7 +100,7 @@ type WSServerConfig struct {
 	CrossOrigins []string `json:"crossorigins"`
 }
 
-// Config is the seele's configuration to create seele service
+// Config is the scdo's configuration to create scdo service
 type SeeleConfig struct {
 	TxConf core.TransactionPoolConfig
 

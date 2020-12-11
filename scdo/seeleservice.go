@@ -294,13 +294,13 @@ func (s *SeeleService) Stop() error {
 	return nil
 }
 
-// APIs implements node.Service, returning the collection of RPC services the seele package offers.
+// APIs implements node.Service, returning the collection of RPC services the scdo package offers.
 // must to make sure that the order of the download api is 5; we get the download api by 5
 func (s *SeeleService) APIs() (apis []rpc.API) {
 	apis = append(apis, api.GetAPIs(NewSeeleBackend(s))...)
 	apis = append(apis, []rpc.API{
 		{
-			Namespace: "seele",
+			Namespace: "scdo",
 			Version:   "1.0",
 			Service:   NewPublicSeeleAPI(s),
 			Public:    true,

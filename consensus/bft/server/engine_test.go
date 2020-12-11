@@ -381,11 +381,11 @@ func TestVerifyHeader(t *testing.T) {
 /*
 panic: test timed out after 30s
 github.com/scdoproject/go-stem/consensus/bft/server.(*server).SealResult(0xc000118120, 0x463ac00, 0xc000114fa0, 0xc0000948a0, 0x0, 0x0, 0x0, 0x0)
-	/Users/seele/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine.go:202 +0x58c
+	/Users/scdo/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine.go:202 +0x58c
 github.com/scdoproject/go-stem/consensus/bft/server.newBlock(0xc0001f43c0, 0xc00011a120, 0xc0000ce600, 0xc000154701)
-	/Users/seele/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine_test.go:126 +0x70
+	/Users/scdo/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine_test.go:126 +0x70
 github.com/scdoproject/go-stem/consensus/bft/server.TestVerifySeal(0xc0001b8100)
-	/Users/seele/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine_test.go:358 +0x152
+	/Users/scdo/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine_test.go:358 +0x152
 */
 func TestVerifySeal(t *testing.T) {
 	chain, engine := newBlockChain(1) //generate 1 node in verifier set

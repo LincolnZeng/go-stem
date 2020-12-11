@@ -143,7 +143,7 @@ func GetGenesis(info *GenesisInfo) *Genesis {
 	createTimestamp := info.CreateTimestamp
 
 	/* Scdo will fork from ScdoForkHeight,
-	   Below is the seele block information before forkHeight
+	   Below is the scdo block information before forkHeight
 	*/
 
 	if info.ShardNumber == 1 {
@@ -176,7 +176,7 @@ func GetGenesis(info *GenesisInfo) *Genesis {
 	}
 	return &Genesis{
 		header: &types.BlockHeader{
-			PreviousBlockHash: previousBlockHash, // Note: this blockhash is seele block=2818931 hash
+			PreviousBlockHash: previousBlockHash, // Note: this blockhash is scdo block=2818931 hash
 			Creator:           creator,
 			StateHash:         stateHash,
 			TxHash:            txHash,

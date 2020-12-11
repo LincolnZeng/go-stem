@@ -16,7 +16,7 @@ import (
 	"github.com/scdoproject/go-stem/common/hexutil"
 )
 
-// ParseArgs parse the args string into the Seele type and return an error if
+// ParseArgs parse the args string into the Scdo type and return an error if
 // the args length does not match or the parsed type fails.
 func ParseArgs(abiArgs abi.Arguments, args []string) ([]interface{}, error) {
 	if len(args) != len(abiArgs) {
@@ -127,7 +127,7 @@ func parseArg(abiType string, arg string) (interface{}, error) {
 				}
 				return b, nil
 			default:
-				return nil, fmt.Errorf("Now abi only supports bytes32 and bytes, and it will totally support in seele.js, reject: %s", length)
+				return nil, fmt.Errorf("Now abi only supports bytes32 and bytes, and it will totally support in scdo.js, reject: %s", length)
 			}
 		}
 

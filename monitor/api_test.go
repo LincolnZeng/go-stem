@@ -61,13 +61,13 @@ func createTestAPI(t *testing.T) (api *PublicMonitorAPI, dispose func()) {
 		SeeleConfig: conf.SeeleConfig,
 	}
 
-	serviceContext := seele.ServiceContext{
+	serviceContext := scdo.ServiceContext{
 		DataDir: filepath.Join(common.GetTempFolder(), "n1", fmt.Sprintf("%d", time.Now().UnixNano())),
 	}
 
 	ctx := context.WithValue(context.Background(), "ServiceContext", serviceContext)
-	dataDir := ctx.Value("ServiceContext").(seele.ServiceContext).DataDir
-	log := log.GetLogger("seele")
+	dataDir := ctx.Value("ServiceContext").(scdo.ServiceContext).DataDir
+	log := log.GetLogger("scdo")
 
 	seeleNode, err := node.New(&testConf)
 	if err != nil {
@@ -75,7 +75,7 @@ func createTestAPI(t *testing.T) (api *PublicMonitorAPI, dispose func()) {
 		return
 	}
 
-	seeleService, err := seele.NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
+	seeleService, err := scdo.NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
 		t.Fatal(err)
 		return
@@ -97,7 +97,7 @@ func createTestAPI(t *testing.T) (api *PublicMonitorAPI, dispose func()) {
 	seeleService.Miner().Start()
 
 	return api, func() {
-		api.s.seele.Stop()
+		api.s.scdo.Stop()
 		os.RemoveAll(dataDir)
 	}
 }
@@ -139,13 +139,13 @@ func createTestAPIErr(errBranch int) (api *PublicMonitorAPI, dispose func()) {
 		}
 	}
 
-	serviceContext := seele.ServiceContext{
+	serviceContext := scdo.ServiceContext{
 		DataDir: common.GetTempFolder() + "/n2/",
 	}
 
 	ctx := context.WithValue(context.Background(), "ServiceContext", serviceContext)
-	dataDir := ctx.Value("ServiceContext").(seele.ServiceContext).DataDir
-	log := log.GetLogger("seele")
+	dataDir := ctx.Value("ServiceContext").(scdo.ServiceContext).DataDir
+	log := log.GetLogger("scdo")
 
 	seeleNode, err := node.New(&testConf)
 	if err != nil {
@@ -153,7 +153,7 @@ func createTestAPIErr(errBranch int) (api *PublicMonitorAPI, dispose func()) {
 		return
 	}
 
-	seeleService, err := seele.NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
+	seeleService, err := scdo.NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -173,7 +173,7 @@ func createTestAPIErr(errBranch int) (api *PublicMonitorAPI, dispose func()) {
 	}
 
 	return api, func() {
-		api.s.seele.Stop()
+		api.s.scdo.Stop()
 		os.RemoveAll(dataDir)
 	}
 }

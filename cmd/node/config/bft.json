@@ -1,6 +1,6 @@
 {
   "basic":{
-    "name": "seele node1",
+    "name": "scdo node1",
     "version": "1.0",
     "dataDir": "bft_node1",
     "address": "0.0.0.0:8020",
@@ -12,7 +12,7 @@
     "privateKey": "0x5652bca119ebffa9d6d48ce9c4bd002de61ffaf090da8b80890a7cd598d3ef9c",
     "staticNodes": ["127.0.0.1:8054"],
     "address": "0.0.0.0:8050",
-    "networkID": "seele"
+    "networkID": "scdo"
   },
   "log": {
     "isDebug":  false,

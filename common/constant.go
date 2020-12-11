@@ -15,10 +15,10 @@ import (
 
 const (
 
-	// SeeleProtoName protoName of Seele service
-	SeeleProtoName = "seele"
+	// SeeleProtoName protoName of Scdo service
+	SeeleProtoName = "scdo"
 
-	// SeeleVersion Version number of Seele protocol
+	// SeeleVersion Version number of Scdo protocol
 	SeeleVersion uint = 1
 
 	// SeeleVersion for simpler display
@@ -101,7 +101,7 @@ const (
 
 	WindowsPipeDir = `\\.\pipe\`
 
-	defaultPipeFile = `\seele.ipc`
+	defaultPipeFile = `\scdo.ipc`
 )
 
 var (
@@ -134,7 +134,7 @@ func init() {
 
 	tempFolder = filepath.Join(usr.HomeDir, "seeleTemp")
 
-	defaultDataFolder = filepath.Join(usr.HomeDir, ".seele")
+	defaultDataFolder = filepath.Join(usr.HomeDir, ".scdo")
 
 	if runtime.GOOS == "windows" {
 		defaultIPCPath = WindowsPipeDir + defaultPipeFile

@@ -27,7 +27,7 @@ func init() {
 	callCmd.Flags().StringVarP(&input, "input", "i", "", "call function input")
 	callCmd.Flags().StringVarP(&methodName, "method", "m", "", "call function method name")
 	callCmd.Flags().StringVarP(&contractHexAddr, "contractAddr", "c", "", "the contract address")
-	callCmd.Flags().StringVarP(&account, "account", "a", "", "invoking the address of calling the smart contract(Default is random and has 1 seele)")
+	callCmd.Flags().StringVarP(&account, "account", "a", "", "invoking the address of calling the smart contract(Default is random and has 1 scdo)")
 	callCmd.Flags().Uint64VarP(&fee, "fee", "f",100000000 , "call function fee")
 
 	rootCmd.AddCommand(callCmd)
@@ -36,7 +36,7 @@ func init() {
 var callCmd = &cobra.Command{
 	Use:   "call",
 	Short: "call a contract",
-	Long:  `All contract could callable. This is Seele contract simulator's`,
+	Long:  `All contract could callable. This is Scdo contract simulator's`,
 	Run: func(cmd *cobra.Command, args []string) {
 		callContract(contractHexAddr)
 	},

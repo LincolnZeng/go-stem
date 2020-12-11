@@ -42,7 +42,7 @@ func NewNode(nodeID string) *Node {
 	/* primary node:
 		curl -H "Content-Type: application/json" -X POSt -d '{"clientID":"ahnhwi", "operation":"GetMyName", "timestamp":859381532}' http://localhost:1111/req
 	operation nodes:
-		go run start.go Seele?
+		go run start.go Scdo?
 	//
 	*/
 	node := &Node{

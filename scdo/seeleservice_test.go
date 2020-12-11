@@ -39,7 +39,7 @@ func newTestSeeleService() *SeeleService {
 
 	var key interface{} = "ServiceContext"
 	ctx := context.WithValue(context.Background(), key, serviceContext)
-	log := log.GetLogger("seele")
+	log := log.GetLogger("scdo")
 
 	seeleService, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
@@ -87,11 +87,11 @@ func Test_SeeleService_APIs(t *testing.T) {
 	apis := s.APIs()
 
 	assert.Equal(t, len(apis), 10)
-	assert.Equal(t, apis[0].Namespace, "seele")
+	assert.Equal(t, apis[0].Namespace, "scdo")
 	assert.Equal(t, apis[1].Namespace, "txpool")
 	assert.Equal(t, apis[2].Namespace, "network")
 	assert.Equal(t, apis[3].Namespace, "debug")
-	assert.Equal(t, apis[4].Namespace, "seele")
+	assert.Equal(t, apis[4].Namespace, "scdo")
 	assert.Equal(t, apis[5].Namespace, "download")
 	assert.Equal(t, apis[6].Namespace, "debug")
 	assert.Equal(t, apis[7].Namespace, "miner")

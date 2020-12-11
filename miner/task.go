@@ -49,7 +49,7 @@ func NewTask(header *types.BlockHeader, coinbase common.Address, verifier types.
 }
 
 // applyTransactionsAndDebts TODO need to check more about the transactions, such as gas limit
-func (task *Task) applyTransactionsAndDebts(seele SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog) error {
+func (task *Task) applyTransactionsAndDebts(scdo SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog) error {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task applyTransactionsAndDebts entrance", now, false)
@@ -57,7 +57,7 @@ func (task *Task) applyTransactionsAndDebts(seele SeeleBackend, statedb *state.S
 	// choose transactions from the given txs
 	var size int
 	if task.header.Consensus != types.BftConsensus { // subchain doese not support debts.
-		size = task.chooseDebts(seele, statedb, log)
+		size = task.chooseDebts(scdo, statedb, log)
 	}
 
 	// the reward tx will always be at the first of the block's transactions
@@ -66,7 +66,7 @@ func (task *Task) applyTransactionsAndDebts(seele SeeleBackend, statedb *state.S
 		return err
 	}
 
-	task.chooseTransactions(seele, statedb, log, size)
+	task.chooseTransactions(scdo, statedb, log, size)
 
 	log.Info("mining block height:%d, reward:%s, transaction number:%d, debt number: %d",
 		task.header.Height, reward, len(task.txs), len(task.debts))
@@ -87,7 +87,7 @@ func (task *Task) applyTransactionsAndDebts(seele SeeleBackend, statedb *state.S
 }
 
 //applyTransactionsSubchain apply txs for subchain
-func (task *Task) applyTransactionsSubchain(seele SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog, revertedTxHash *common.Hash) error {
+func (task *Task) applyTransactionsSubchain(scdo SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog, revertedTxHash *common.Hash) error {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task applyTransactionsAndDebts entrance", now, false)
@@ -101,7 +101,7 @@ func (task *Task) applyTransactionsSubchain(seele SeeleBackend, statedb *state.S
 		return err
 	}
 
-	task.chooseTransactionsSubchain(seele, statedb, log, size, revertedTxHash)
+	task.chooseTransactionsSubchain(scdo, statedb, log, size, revertedTxHash)
 
 	log.Info("mining block height:%d, reward:%s, transaction number:%d, debt number: %d",
 		task.header.Height, reward, len(task.txs), len(task.debts))
@@ -120,7 +120,7 @@ func (task *Task) applyTransactionsSubchain(seele SeeleBackend, statedb *state.S
 	return nil
 }
 
-func (task *Task) chooseDebts(seele SeeleBackend, statedb *state.Statedb, log *log.SeeleLog) int {
+func (task *Task) chooseDebts(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog) int {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task chooseDebts entrance", now, false)
@@ -128,16 +128,16 @@ func (task *Task) chooseDebts(seele SeeleBackend, statedb *state.Statedb, log *l
 	size := core.BlockByteLimit
 
 	for size > 0 {
-		debts, _ := seele.DebtPool().GetProcessableDebts(size)
+		debts, _ := scdo.DebtPool().GetProcessableDebts(size)
 		if len(debts) == 0 {
 			break
 		}
 
 		for _, d := range debts {
-			err := seele.BlockChain().ApplyDebtWithoutVerify(statedb, d, task.coinbase)
+			err := scdo.BlockChain().ApplyDebtWithoutVerify(statedb, d, task.coinbase)
 			if err != nil {
 				log.Warn("apply debt error %s", err)
-				seele.DebtPool().RemoveDebtByHash(d.Hash)
+				scdo.DebtPool().RemoveDebtByHash(d.Hash)
 				continue
 			}
 
@@ -173,7 +173,7 @@ func (task *Task) handleMinerRewardTx(statedb *state.Statedb) (*big.Int, error) 
 	return reward, nil
 }
 
-func (task *Task) chooseTransactions(seele SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int) {
+func (task *Task) chooseTransactions(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int) {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task chooseTransactions entrance", now, false)
@@ -205,28 +205,28 @@ func (task *Task) chooseTransactions(seele SeeleBackend, statedb *state.Statedb,
 	txIndex := 1 // the first tx is miner reward
 
 	for size > 0 {
-		txs, txsSize := seele.TxPool().GetProcessableTransactions(size)
+		txs, txsSize := scdo.TxPool().GetProcessableTransactions(size)
 		if len(txs) == 0 {
 			break
 		}
 
 		for _, tx := range txs {
 			if err := tx.Validate(statedb, task.header.Height); err != nil {
-				seele.TxPool().RemoveTransaction(tx.Hash)
+				scdo.TxPool().RemoveTransaction(tx.Hash)
 				log.Error("failed to validate tx %s, for %s", tx.Hash.Hex(), err)
 				txsSize = txsSize - tx.Size()
 				continue
 			}
 
-			receipt, err := seele.BlockChain().ApplyTransaction(tx, txIndex, task.coinbase, statedb, task.header)
+			receipt, err := scdo.BlockChain().ApplyTransaction(tx, txIndex, task.coinbase, statedb, task.header)
 			if err != nil {
-				seele.TxPool().RemoveTransaction(tx.Hash)
+				scdo.TxPool().RemoveTransaction(tx.Hash)
 				log.Error("failed to apply tx %s, %s", tx.Hash.Hex(), err)
 				txsSize = txsSize - tx.Size()
 				continue
 			}
 			if task.header.Consensus == types.BftConsensus { // for bft, the secondwitness will be used as deposit&exit address holder.
-				rootAccounts := seele.GenesisInfo().Rootaccounts
+				rootAccounts := scdo.GenesisInfo().Rootaccounts
 				fmt.Printf("rootAccounts %+v", rootAccounts)
 				// if there is any successful challenge tx, need to revert blockchain first to specific point!
 				if tx.IsChallengedTx(rootAccounts) {
@@ -266,7 +266,7 @@ func (task *Task) chooseTransactions(seele SeeleBackend, statedb *state.Statedb,
 	memory.Print(log, "task chooseTransactions exit", now, true)
 }
 
-func (task *Task) chooseTransactionsSubchain(seele SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int, revertedTxHash *common.Hash) {
+func (task *Task) chooseTransactionsSubchain(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int, revertedTxHash *common.Hash) {
 	now := time.Now()
 	// entrance
 	memory.Print(log, "task chooseTransactions entrance", now, false)
@@ -299,7 +299,7 @@ func (task *Task) chooseTransactionsSubchain(seele SeeleBackend, statedb *state.
 	txIndex := 1 // the first tx is miner reward
 
 	for size > 0 {
-		txs, txsSize := seele.TxPool().GetProcessableTransactions(size)
+		txs, txsSize := scdo.TxPool().GetProcessableTransactions(size)
 		if len(txs) == 0 {
 			break
 		}
@@ -310,21 +310,21 @@ func (task *Task) chooseTransactionsSubchain(seele SeeleBackend, statedb *state.
 			// 	fmt.Errorf("transaction must be packed at height %d but height %d, retreat!", tx.largestPackHeight, task.header.Height)
 			// }
 			if err := tx.Validate(statedb, task.header.Height); err != nil {
-				seele.TxPool().RemoveTransaction(tx.Hash)
+				scdo.TxPool().RemoveTransaction(tx.Hash)
 				log.Error("failed to validate tx %s, for %s", tx.Hash.Hex(), err)
 				txsSize = txsSize - tx.Size()
 				continue
 			}
 
-			receipt, err := seele.BlockChain().ApplyTransaction(tx, txIndex, task.coinbase, statedb, task.header)
+			receipt, err := scdo.BlockChain().ApplyTransaction(tx, txIndex, task.coinbase, statedb, task.header)
 			if err != nil {
-				seele.TxPool().RemoveTransaction(tx.Hash)
+				scdo.TxPool().RemoveTransaction(tx.Hash)
 				log.Error("failed to apply tx %s, %s", tx.Hash.Hex(), err)
 				txsSize = txsSize - tx.Size()
 				continue
 			}
 			if task.header.Consensus == types.BftConsensus { // for bft, the secondwitness will be used as deposit&exit address holder.
-				rootAccounts := seele.GenesisInfo().Rootaccounts
+				rootAccounts := scdo.GenesisInfo().Rootaccounts
 				fmt.Printf("rootAccounts %+v", rootAccounts)
 				// if there is any successful challenge tx, need to revert blockchain first to specific point!
 				if tx.IsChallengedTx(rootAccounts) {

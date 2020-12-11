@@ -101,7 +101,7 @@ func codeToStr(code uint16) string {
 	return "unknown"
 }
 
-// LightProtocol service implementation of seele
+// LightProtocol service implementation of scdo
 type LightProtocol struct {
 	p2p.Protocol
 

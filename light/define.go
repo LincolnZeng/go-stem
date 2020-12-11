@@ -14,10 +14,10 @@ import (
 )
 
 const (
-	// LightProtoName protoName of Seele service
+	// LightProtoName protoName of Scdo service
 	LightProtoName = "lightSeele"
 
-	// LightSeeleVersion version number of Seele protocol
+	// LightSeeleVersion version number of Scdo protocol
 	LightSeeleVersion uint = 1
 
 	// MaxBlockHashRequest maximum hashes to request per message

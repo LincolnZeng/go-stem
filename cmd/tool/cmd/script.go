@@ -41,7 +41,7 @@ type GroupInfo struct {
 }
 
 var (
-	configPath  = "/home/seele/node/getconfig/"
+	configPath  = "/home/scdo/node/getconfig/"
 	nodeFile    = "node.json"
 	hostsFile   = "hosts.json"
 	keyNodeFile = "keyStore.json"

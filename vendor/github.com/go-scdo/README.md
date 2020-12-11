@@ -59,7 +59,7 @@ buildall.bat
 # Run Scdo
 A simple version Scdo mining tutorial: English-[Scdo MiningTutorial](https://github.com/scdoproject/go-scdo/releases/tag/v1.0.1-MiningTutorial_Eng), 中文-[Scdo 挖矿教程中文简版](https://github.com/scdoproject/go-scdo/releases/tag/v1.0.1-%E4%B8%AD%E6%96%87%E7%AE%80%E7%89%88%E6%8C%96%E7%9F%BF%E6%95%99%E7%A8%8B).
 
-For running a node, please refer to [Get Started](https://scdotech.gitbook.io/wiki/developer/go-scdo/gettingstarted)([Older version](https://scdoteam.github.io/scdo-doc/docs/Getting-Started-With-Seele Credo.html)).
+For running a node, please refer to [Get Started](https://scdotech.gitbook.io/wiki/developer/go-scdo/gettingstarted)([Older version](https://scdoteam.github.io/scdo-doc/docs/Getting-Started-With-Scdo Credo.html)).
 For more usage details and deeper explanations, please consult the [Scdo Wiki](https://scdotech.gitbook.io/wiki/)([Older version](https://scdoteam.github.io/scdo-doc/index.html)).
 
 # Contribution

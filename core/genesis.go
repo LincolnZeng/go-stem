@@ -295,7 +295,7 @@ func (genesis *Genesis) GetShardNumber() uint {
 func (genesis *Genesis) InitializeAndValidate(bcStore store.BlockchainStore, accountStateDB database.Database) error {
 	storedGenesisHash, err := bcStore.GetBlockHash(genesisBlockHeight)
 
-	// FIXME use seele-defined common error instead of concrete levelDB error.
+	// FIXME use scdo-defined common error instead of concrete levelDB error.
 	if err == leveldbErrors.ErrNotFound {
 		return genesis.store(bcStore, accountStateDB)
 	}

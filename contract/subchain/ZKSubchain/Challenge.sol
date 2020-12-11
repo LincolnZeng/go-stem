@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 /**
     @title challenge module
-    @author seele team  
+    @author scdo team  
  */
 
  library Challenge {

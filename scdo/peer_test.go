@@ -46,7 +46,7 @@ func Test_peer_Info(t *testing.T) {
 }
 
 func Test_verifyGenesis(t *testing.T) {
-	networkID := "seele"
+	networkID := "scdo"
 	statusData := statusData{
 		ProtocolVersion: uint32(0),
 		NetworkID:       networkID,

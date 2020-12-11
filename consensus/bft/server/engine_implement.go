@@ -355,7 +355,7 @@ func (s *server) VerifySeal(chain consensus.ChainReader, header *types.BlockHead
 	return s.verifySigner(chain, header, nil)
 }
 
-// Author retrieves the Seele address of the account that minted the given
+// Author retrieves the Scdo address of the account that minted the given
 // block, which may be different from the header's coinbase if a consensus
 // engine is based on signatures.
 func (s *server) Creator(header *types.BlockHeader) (common.Address, error) {

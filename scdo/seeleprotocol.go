@@ -70,7 +70,7 @@ func codeToStr(code uint16) string {
 	return downloader.CodeToStr(code)
 }
 
-// SeeleProtocol service implementation of seele
+// SeeleProtocol service implementation of scdo
 type SeeleProtocol struct {
 	p2p.Protocol
 	peerSet *peerSet
@@ -94,18 +94,18 @@ type SeeleProtocol struct {
 func (s *SeeleProtocol) Downloader() *downloader.Downloader { return s.downloader }
 
 // NewSeeleProtocol create SeeleProtocol
-func NewSeeleProtocol(seele *SeeleService, log *log.SeeleLog, engine consensus.Engine) (s *SeeleProtocol, err error) {
+func NewSeeleProtocol(scdo *SeeleService, log *log.SeeleLog, engine consensus.Engine) (s *SeeleProtocol, err error) {
 	s = &SeeleProtocol{
 		Protocol: p2p.Protocol{
 			Name:    common.SeeleProtoName,
 			Version: common.SeeleVersion,
 			Length:  protocolMsgCodeLength,
 		},
-		networkID:  seele.networkID,
-		txPool:     seele.TxPool(),
-		debtPool:   seele.debtPool,
-		chain:      seele.BlockChain(),
-		downloader: downloader.NewDownloader(seele.BlockChain(), seele),
+		networkID:  scdo.networkID,
+		txPool:     scdo.TxPool(),
+		debtPool:   scdo.debtPool,
+		chain:      scdo.BlockChain(),
+		downloader: downloader.NewDownloader(scdo.BlockChain(), scdo),
 		log:        log,
 		quitCh:     make(chan struct{}),
 		syncCh:     make(chan struct{}),
@@ -120,7 +120,7 @@ func NewSeeleProtocol(seele *SeeleService, log *log.SeeleLog, engine consensus.E
 	s.Protocol.DeletePeer = s.handleDelPeer
 	s.Protocol.GetPeer = s.handleGetPeer
 
-	s.debtManager = NewDebtManager(seele.debtVerifier, s, s.chain, seele.debtManagerDB)
+	s.debtManager = NewDebtManager(scdo.debtVerifier, s, s.chain, scdo.debtManagerDB)
 
 	event.TransactionInsertedEventManager.AddAsyncListener(s.handleNewTx)
 	event.BlockMinedEventManager.AddAsyncListener(s.handleNewMinedBlock)
@@ -842,7 +842,7 @@ handler:
 	}
 
 	p.handleDelPeer(peer.Peer)
-	p.log.Debug("seele.protocol.handlemsg run out! peer= %s!", peer.peerStrID)
+	p.log.Debug("scdo.protocol.handlemsg run out! peer= %s!", peer.peerStrID)
 	peer.Disconnect(fmt.Sprintf("called from seeleprotocol.handlemsg. id=%s", peer.peerStrID))
 }
 

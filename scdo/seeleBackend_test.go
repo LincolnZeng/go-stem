@@ -120,10 +120,10 @@ func newTestTxPoolAPI(t *testing.T, dbPath string) *TransactionPoolAPI {
 
 	var key interface{} = "ServiceContext"
 	ctx := context.WithValue(context.Background(), key, serviceContext)
-	log := log.GetLogger("seele")
+	log := log.GetLogger("scdo")
 	ss, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
-		panic("new seele service error")
+		panic("new scdo service error")
 	}
 	return NewTransactionPoolAPI(ss)
 }

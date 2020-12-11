@@ -34,9 +34,9 @@ func init() {
 	tailRewardCoin = convertSeeleToFan(tailReward / common.ShardCount)
 }
 
-func convertSeeleToFan(seele float64) *big.Int {
+func convertSeeleToFan(scdo float64) *big.Int {
 	unit := common.SeeleToFan.Int64()
-	f := uint64(seele * float64(unit))
+	f := uint64(scdo * float64(unit))
 
 	return big.NewInt(0).SetUint64(f)
 }

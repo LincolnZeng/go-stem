@@ -39,7 +39,7 @@ package miner
 // }
 
 // // applyTransactionsAndDebts TODO need to check more about the transactions, such as gas limit
-// func (task *TaskSubChain) applyTransactions(seele SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog) error {
+// func (task *TaskSubChain) applyTransactions(scdo SeeleBackend, statedb *state.Statedb, accountStateDB database.Database, log *log.SeeleLog) error {
 // 	now := time.Now()
 // 	// entrance
 // 	memory.Print(log, "task applyTransactionsAndDebts entrance", now, false)
@@ -52,7 +52,7 @@ package miner
 // 		return err
 // 	}
 
-// 	task.chooseTransactions(seele, statedb, log, size)
+// 	task.chooseTransactions(scdo, statedb, log, size)
 
 // 	log.Info("mining block height:%d, reward:%s, transaction number:%d, updated verifiers number: %d",
 // 		task.header.Height, reward, len(task.txs), len(task.updatedVerifiers))
@@ -71,7 +71,7 @@ package miner
 // 	return nil
 // }
 
-// func (task *TaskSubChain) chooseDebts(seele SeeleBackend, statedb *state.Statedb, log *log.SeeleLog) int {
+// func (task *TaskSubChain) chooseDebts(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog) int {
 // 	now := time.Now()
 // 	// entrance
 // 	memory.Print(log, "task chooseDebts entrance", now, false)
@@ -79,16 +79,16 @@ package miner
 // 	size := core.BlockByteLimit
 
 // 	for size > 0 {
-// 		debts, _ := seele.DebtPool().GetProcessableDebts(size)
+// 		debts, _ := scdo.DebtPool().GetProcessableDebts(size)
 // 		if len(debts) == 0 {
 // 			break
 // 		}
 
 // 		for _, d := range debts {
-// 			err := seele.BlockChain().ApplyDebtWithoutVerify(statedb, d, task.coinbase)
+// 			err := scdo.BlockChain().ApplyDebtWithoutVerify(statedb, d, task.coinbase)
 // 			if err != nil {
 // 				log.Warn("apply debt error %s", err)
-// 				seele.DebtPool().RemoveDebtByHash(d.Hash)
+// 				scdo.DebtPool().RemoveDebtByHash(d.Hash)
 // 				continue
 // 			}
 
@@ -124,7 +124,7 @@ package miner
 // 	return reward, nil
 // }
 
-// func (task *TaskSubChain) chooseTransactions(seele SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int) {
+// func (task *TaskSubChain) chooseTransactions(scdo SeeleBackend, statedb *state.Statedb, log *log.SeeleLog, size int) {
 // 	now := time.Now()
 // 	// entrance
 // 	memory.Print(log, "task chooseTransactions entrance", now, false)
@@ -132,22 +132,22 @@ package miner
 // 	txIndex := 1 // the first tx is miner reward
 
 // 	for size > 0 {
-// 		txs, txsSize := seele.TxPool().GetProcessableTransactions(size)
+// 		txs, txsSize := scdo.TxPool().GetProcessableTransactions(size)
 // 		if len(txs) == 0 {
 // 			break
 // 		}
 
 // 		for _, tx := range txs {
 // 			if err := tx.Validate(statedb, task.header.Height); err != nil {
-// 				seele.TxPool().RemoveTransaction(tx.Hash)
+// 				scdo.TxPool().RemoveTransaction(tx.Hash)
 // 				log.Error("failed to validate tx %s, for %s", tx.Hash.Hex(), err)
 // 				txsSize = txsSize - tx.Size()
 // 				continue
 // 			}
 
-// 			receipt, err := seele.BlockChain().ApplyTransaction(tx, txIndex, task.coinbase, statedb, task.header)
+// 			receipt, err := scdo.BlockChain().ApplyTransaction(tx, txIndex, task.coinbase, statedb, task.header)
 // 			if err != nil {
-// 				seele.TxPool().RemoveTransaction(tx.Hash)
+// 				scdo.TxPool().RemoveTransaction(tx.Hash)
 // 				log.Error("failed to apply tx %s, %s", tx.Hash.Hex(), err)
 // 				txsSize = txsSize - tx.Size()
 // 				continue

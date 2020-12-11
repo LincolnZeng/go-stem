@@ -52,7 +52,7 @@ type Miner struct {
 	current  *Task
 	recv     chan *types.Block
 
-	seele SeeleBackend
+	scdo SeeleBackend
 	log   *log.SeeleLog
 
 	isFirstDownloader    int32
@@ -67,13 +67,13 @@ type Miner struct {
 }
 
 // NewMiner constructs and returns a miner instance
-func NewMiner(addr common.Address, seele SeeleBackend, verifier types.DebtVerifier, engine consensus.Engine) *Miner {
+func NewMiner(addr common.Address, scdo SeeleBackend, verifier types.DebtVerifier, engine consensus.Engine) *Miner {
 	miner := &Miner{
 		coinbase:             addr,
 		canStart:             1,
 		stopped:              0,
 		stopper:              0,
-		seele:                seele,
+		scdo:                scdo,
 		wg:                   sync.WaitGroup{},
 		recv:                 make(chan *types.Block, 1),
 		log:                  log.GetLogger("miner"),
@@ -133,7 +133,7 @@ func (miner *Miner) Start() error {
 	miner.stopChan = make(chan struct{})
 
 	if bft, ok := miner.engine.(consensus.Bft); ok {
-		if err := bft.Start(miner.seele.BlockChain(), miner.seele.BlockChain().CurrentBlock, nil); err != nil {
+		if err := bft.Start(miner.scdo.BlockChain(), miner.scdo.BlockChain().CurrentBlock, nil); err != nil {
 			panic(fmt.Sprintf("failed to start bft engine: %v", err))
 		}
 	}
@@ -264,8 +264,8 @@ func (miner *Miner) revert(height uint64) error {
 	if height < 0 || height > miner.current.header.Height {
 		return errors.New("invalid revert height when handle reverse due to challenge tx")
 	}
-	bcStore := miner.seele.BlockChain().BCStore()
-	bc := miner.seele.BlockChain()
+	bcStore := miner.scdo.BlockChain().BCStore()
+	bc := miner.scdo.BlockChain()
 	var curHeaderHash common.Hash
 	var err error
 
@@ -354,7 +354,7 @@ func (miner *Miner) prepareNewBlock(recv chan *types.Block) error {
 	miner.log.Info("starting mining the new block")
 
 	timestamp := time.Now().Unix()
-	parent, stateDB, err := miner.seele.BlockChain().GetCurrentInfo()
+	parent, stateDB, err := miner.scdo.BlockChain().GetCurrentInfo()
 	if err != nil {
 		return fmt.Errorf("failed to get current info, %s", err)
 	}
@@ -371,7 +371,7 @@ func (miner *Miner) prepareNewBlock(recv chan *types.Block) error {
 	}
 
 	// here we can require the block interval must larger than BFTBlockInterval constant value.
-	consensus := miner.seele.GenesisInfo().Consensus
+	consensus := miner.scdo.GenesisInfo().Consensus
 	now := time.Now().Unix()
 	if consensus == types.BftConsensus && now-parent.Header.CreateTimestamp.Int64() < common.BFTBlockInterval {
 		wait := time.Duration(now-parent.Header.CreateTimestamp.Int64()) * time.Second
@@ -384,7 +384,7 @@ func (miner *Miner) prepareNewBlock(recv chan *types.Block) error {
 	header := newHeaderByParent(parent, miner.coinbase, timestamp)
 	miner.log.Debug("mining a block with coinbase %s", miner.coinbase.Hex())
 
-	err = miner.engine.Prepare(miner.seele.BlockChain(), header)
+	err = miner.engine.Prepare(miner.scdo.BlockChain(), header)
 	if err != nil {
 		return fmt.Errorf("failed to prepare header, %s", err)
 	}
@@ -393,9 +393,9 @@ func (miner *Miner) prepareNewBlock(recv chan *types.Block) error {
 	// here we add the verifierTx, challengeTx and exitTx
 	// before that, once we have detected any challenged tx, we need to revert the blockchain first
 	if miner.current.header.Consensus == types.BftConsensus {
-		err = miner.current.applyTransactionsSubchain(miner.seele, stateDB, miner.seele.BlockChain().AccountDB(), miner.log, &miner.revertedTx)
+		err = miner.current.applyTransactionsSubchain(miner.scdo, stateDB, miner.scdo.BlockChain().AccountDB(), miner.log, &miner.revertedTx)
 	} else {
-		err = miner.current.applyTransactionsAndDebts(miner.seele, stateDB, miner.seele.BlockChain().AccountDB(), miner.log)
+		err = miner.current.applyTransactionsAndDebts(miner.scdo, stateDB, miner.scdo.BlockChain().AccountDB(), miner.log)
 
 	}
 	if err != nil {
@@ -413,9 +413,9 @@ func (miner *Miner) saveBlock(result *types.Block) error {
 	now := time.Now()
 	// entrance
 	memory.Print(miner.log, "miner saveBlock entrance", now, false)
-	txPool := miner.seele.TxPool().Pool
+	txPool := miner.scdo.TxPool().Pool
 
-	ret := miner.seele.BlockChain().WriteBlock(result, txPool)
+	ret := miner.scdo.BlockChain().WriteBlock(result, txPool)
 
 	// entrance
 	memory.Print(miner.log, "miner saveBlock exit", now, true)
@@ -426,5 +426,5 @@ func (miner *Miner) saveBlock(result *types.Block) error {
 // commitTask commits the given task to the miner
 func (miner *Miner) commitTask(task *Task, recv chan *types.Block) {
 	block := task.generateBlock() //
-	miner.engine.Seal(miner.seele.BlockChain(), block, miner.stopChan, recv)
+	miner.engine.Seal(miner.scdo.BlockChain(), block, miner.stopChan, recv)
 }
