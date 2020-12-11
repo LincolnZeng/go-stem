@@ -1,6 +1,6 @@
 /**
 *  Package p2p
-*  @copyright defined in go-seele/LICENSE
+*  @copyright defined in go-stem/LICENSE
  */
 
 package qvic

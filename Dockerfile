@@ -15,14 +15,14 @@ FROM alpine:latest
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=builder /go/src/github.com/scdoproject/go-stem/build /go-seele
+COPY --from=builder /go/src/github.com/scdoproject/go-stem/build /go-stem
 
-ENV PATH /go-seele:$PATH
+ENV PATH /go-stem:$PATH
 
-RUN chmod +x /go-seele/node
+RUN chmod +x /go-stem/node
 
 EXPOSE 8027 8037 8057
 
 # start a node with your 'config.json' file, this file must be external from a volume
 # For example:
-#   docker run -v <your config path>:/go-seele/config:ro -it go-seele node start -c /go-seele/config/configfile
+#   docker run -v <your config path>:/go-stem/config:ro -it go-stem node start -c /go-stem/config/configfile

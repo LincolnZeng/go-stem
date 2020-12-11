@@ -1,6 +1,6 @@
 /**
 *  @file
-*  @copyright defined in go-seele/LICENSE
+*  @copyright defined in go-stem/LICENSE
  */
 
 package sha3
