@@ -1,4 +1,4 @@
-package seele
+package scdo
 
 import (
 	"math/big"
@@ -9,7 +9,7 @@ import (
 	"github.com/scdoproject/go-stem/core/types"
 	"github.com/scdoproject/go-stem/log"
 	"github.com/scdoproject/go-stem/p2p"
-	"github.com/scdoproject/go-stem/seele/download"
+	"github.com/scdoproject/go-stem/scdo/download"
 )
 
 type SeeleBackend struct {

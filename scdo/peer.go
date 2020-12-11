@@ -3,7 +3,7 @@
 *  @copyright defined in go-stem/LICENSE
  */
 
-package seele
+package scdo
 
 import (
 	"encoding/hex"
@@ -17,7 +17,7 @@ import (
 	"github.com/scdoproject/go-stem/core/types"
 	"github.com/scdoproject/go-stem/log"
 	"github.com/scdoproject/go-stem/p2p"
-	downloader "github.com/scdoproject/go-stem/seele/download"
+	downloader "github.com/scdoproject/go-stem/scdo/download"
 )
 
 const (

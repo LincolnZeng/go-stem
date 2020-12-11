@@ -21,7 +21,7 @@ import (
 	"github.com/scdoproject/go-stem/log"
 	"github.com/scdoproject/go-stem/node"
 	"github.com/scdoproject/go-stem/p2p"
-	"github.com/scdoproject/go-stem/seele"
+	"github.com/scdoproject/go-stem/scdo"
 )
 
 func getTmpConfig() *node.Config {

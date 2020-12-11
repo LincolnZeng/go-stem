@@ -3,7 +3,7 @@
 *  @copyright defined in go-stem/LICENSE
  */
 
-package seele
+package scdo
 
 import (
 	"context"
@@ -24,7 +24,7 @@ import (
 	"github.com/scdoproject/go-stem/node"
 	"github.com/scdoproject/go-stem/p2p"
 	"github.com/scdoproject/go-stem/rpc"
-	downloader "github.com/scdoproject/go-stem/seele/download"
+	downloader "github.com/scdoproject/go-stem/scdo/download"
 )
 
 const chainHeaderChangeBuffSize = 100

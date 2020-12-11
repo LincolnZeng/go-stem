@@ -3,7 +3,7 @@
 *  @copyright defined in go-stem/LICENSE
  */
 
-package seele
+package scdo
 
 import (
 	api2 "github.com/scdoproject/go-stem/api"

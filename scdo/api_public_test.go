@@ -3,7 +3,7 @@
 *  @copyright defined in go-stem/LICENSE
  */
 
-package seele
+package scdo
 
 import (
 	"bytes"

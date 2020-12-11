@@ -13,7 +13,7 @@ import (
 	"github.com/scdoproject/go-stem/metrics"
 	miner2 "github.com/scdoproject/go-stem/miner"
 	"github.com/scdoproject/go-stem/monitor"
-	"github.com/scdoproject/go-stem/seele/lightclients"
+	"github.com/scdoproject/go-stem/scdo/lightclients"
 
 	"github.com/scdoproject/go-stem/light"
 
@@ -22,7 +22,7 @@ import (
 
 	"github.com/scdoproject/go-stem/consensus"
 	"github.com/scdoproject/go-stem/node"
-	"github.com/scdoproject/go-stem/seele"
+	"github.com/scdoproject/go-stem/scdo"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +38,7 @@ var (
 
 var substartCmd = &cobra.Command{
 	Use:   "substart",
-	Short: "start the subchain node of seele",
+	Short: "start the subchain node of scdo",
 	Long: `useage example:
 		   node.exe substart -s subchain_node.json [flags]`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -66,7 +66,7 @@ var substartCmd = &cobra.Command{
 
 		// 2.2 context
 		sclog := log.GetLogger("seeleSubChain")
-		subserviceContext := seele.ServiceContext{
+		subserviceContext := scdo.ServiceContext{
 			DataDir: subCfg.BasicConfig.DataDir,
 		}
 		// sctxt := context.WithValue(context.Background(), "SubchainServiceContext", subserviceContext)
@@ -107,10 +107,10 @@ var substartCmd = &cobra.Command{
 			fmt.Printf("create light client manager failed. %s\n", err)
 			return
 		}
-		// subservice, err := seele.NewSeeleServiceSubchain(sctxt, subCfg, sclog, engine)
+		// subservice, err := scdo.NewSeeleServiceSubchain(sctxt, subCfg, sclog, engine)
 		// when new seeleServices, all iniate works will done inside it
 		// 5.1
-		subservice, err := seele.NewSeeleService(sctxt, subCfg, sclog, engine, submanager, startHeight)
+		subservice, err := scdo.NewSeeleService(sctxt, subCfg, sclog, engine, submanager, startHeight)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -189,7 +189,7 @@ var substartCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(substartCmd)
 	// func (f *FlagSet) StringVarP(p *string, name, shorthand string, value string, usage string)
-	substartCmd.Flags().StringVarP(&seeleSubchainNodeConfigFile, "subconfig", "s", "", "seele subchain config file(required)")
+	substartCmd.Flags().StringVarP(&seeleSubchainNodeConfigFile, "subconfig", "s", "", "scdo subchain config file(required)")
 	substartCmd.MustMarkFlagRequired("subconfig")
 	substartCmd.Flags().StringVarP(&accountConfig, "account", "", "", "init account info")
 	substartCmd.Flags().StringVarP(&vote, "vote", "v", "stop", "whether start with voting mode [start/stop], default \"stop\"")

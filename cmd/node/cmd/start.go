@@ -27,8 +27,8 @@ import (
 	miner2 "github.com/scdoproject/go-stem/miner"
 	"github.com/scdoproject/go-stem/monitor"
 	"github.com/scdoproject/go-stem/node"
-	"github.com/scdoproject/go-stem/seele"
-	"github.com/scdoproject/go-stem/seele/lightclients"
+	"github.com/scdoproject/go-stem/scdo"
+	"github.com/scdoproject/go-stem/scdo/lightclients"
 	"github.com/spf13/cobra"
 )
 
@@ -56,7 +56,7 @@ var (
 // startCmd represents the start command
 var startCmd = &cobra.Command{
 	Use:   "start",
-	Short: "start the node of seele",
+	Short: "start the node of scdo",
 	Long: `usage example:
 		node.exe start -c cmd\node.json
 		start a node.`,
@@ -80,10 +80,10 @@ var startCmd = &cobra.Command{
 			return
 		}
 
-		// Create seele service and register the service
-		slog := log.GetLogger("seele")
-		lightLog := log.GetLogger("seele-light")
-		serviceContext := seele.ServiceContext{
+		// Create scdo service and register the service
+		slog := log.GetLogger("scdo")
+		lightLog := log.GetLogger("scdo-light")
+		serviceContext := scdo.ServiceContext{
 			DataDir: nCfg.BasicConfig.DataDir,
 		}
 		ctx := context.WithValue(context.Background(), "ServiceContext", serviceContext)
@@ -142,7 +142,7 @@ var startCmd = &cobra.Command{
 			}
 
 			// fullnode mode
-			seeleService, err := seele.NewSeeleService(ctx, nCfg, slog, engine, manager, startHeight)
+			seeleService, err := scdo.NewSeeleService(ctx, nCfg, slog, engine, manager, startHeight)
 			if err != nil {
 				fmt.Println(err.Error())
 				return
@@ -218,7 +218,7 @@ var startCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(startCmd)
 
-	startCmd.Flags().StringVarP(&seeleNodeConfigFile, "config", "c", "", "seele node config file (required)")
+	startCmd.Flags().StringVarP(&seeleNodeConfigFile, "config", "c", "", "scdo node config file (required)")
 	startCmd.MustMarkFlagRequired("config")
 
 	startCmd.Flags().StringVarP(&miner, "miner", "m", "start", "miner start or not, [start, stop]")

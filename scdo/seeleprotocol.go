@@ -3,7 +3,7 @@
 *  @copyright defined in go-stem/LICENSE
  */
 
-package seele
+package scdo
 
 import (
 	"errors"
@@ -20,7 +20,7 @@ import (
 	"github.com/scdoproject/go-stem/event"
 	"github.com/scdoproject/go-stem/log"
 	"github.com/scdoproject/go-stem/p2p"
-	downloader "github.com/scdoproject/go-stem/seele/download"
+	downloader "github.com/scdoproject/go-stem/scdo/download"
 )
 
 var (

@@ -36,7 +36,7 @@ func (api *PublicMonitorAPI) NodeInfo() (NodeInfo, error) {
 		Name:       api.s.name,
 		Node:       api.s.node,
 		Port:       0, //api.s.p2pServer.ListenAddr,
-		NetVersion: api.s.seele.NetVersion(),
+		NetVersion: api.s.scdo.NetVersion(),
 		Protocol:   "1.0",
 		API:        "No",
 		Os:         runtime.GOOS,
@@ -57,11 +57,11 @@ func (api *PublicMonitorAPI) NodeStats() (*NodeStats, error) {
 		return nil, ErrNodeInfoFailed
 	}
 
-	if api.s.seele.Miner() == nil {
+	if api.s.scdo.Miner() == nil {
 		return nil, ErrMinerInfoFailed
 	}
 
-	mining := api.s.seele.Miner().IsMining()
+	mining := api.s.scdo.Miner().IsMining()
 
 	return &NodeStats{
 		Active:  true,
