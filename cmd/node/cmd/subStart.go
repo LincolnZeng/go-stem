@@ -27,8 +27,8 @@ import (
 )
 
 var (
-	seeleSubchainNodeConfigFile string
-	accountConfig               string
+	stemNodeConfigFile string
+	accountConfig      string
 	// voteState                   bool
 	subpprofPort      uint64
 	subMaxConns       = int(0)
@@ -44,7 +44,7 @@ var substartCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		var wg sync.WaitGroup
 		// 1. load config file
-		subCfg, err := LoadConfigFromFile(seeleSubchainNodeConfigFile, accountConfig)
+		subCfg, err := LoadConfigFromFile(stemNodeConfigFile, accountConfig)
 		if err != nil {
 			fmt.Printf("failed to loading the subchain config file:%+v\n", err.Error())
 			return
@@ -58,14 +58,14 @@ var substartCmd = &cobra.Command{
 		// New node with config/services/log + checkConfig setup(mainly shard)
 		// In New, will check the config file first to gurantee some basic config is illegal
 		// 2.1
-		seeleSubNode, err := node.New(subCfg)
+		stemNode, err := node.New(subCfg)
 		if err != nil {
 			fmt.Println(err.Error())
 			return
 		}
 
 		// 2.2 context
-		sclog := log.GetLogger("seeleSubChain")
+		sclog := log.GetLogger("scdoSubChain")
 		subserviceContext := scdo.ServiceContext{
 			DataDir: subCfg.BasicConfig.DataDir,
 		}
@@ -102,13 +102,13 @@ var substartCmd = &cobra.Command{
 		}
 
 		//5. services
-		submanager, err := lightclients.NewLightClientManagerSubChain(seeleSubNode.GetShardNumber(), sctxt, subCfg, engine)
+		submanager, err := lightclients.NewLightClientManagerSubChain(stemNode.GetShardNumber(), sctxt, subCfg, engine)
 		if err != nil {
 			fmt.Printf("create light client manager failed. %s\n", err)
 			return
 		}
 		// subservice, err := scdo.NewSeeleServiceSubchain(sctxt, subCfg, sclog, engine)
-		// when new seeleServices, all iniate works will done inside it
+		// when new scdoServices, all iniate works will done inside it
 		// 5.1
 		subservice, err := scdo.NewSeeleService(sctxt, subCfg, sclog, engine, submanager, startHeight)
 		if err != nil {
@@ -116,13 +116,13 @@ var substartCmd = &cobra.Command{
 			return
 		}
 		// 5.2
-		lightServerSubServie, err := light.NewServiceServer(subservice, subCfg, sclog, seeleSubNode.GetShardNumber())
+		lightServerSubServie, err := light.NewServiceServer(subservice, subCfg, sclog, stemNode.GetShardNumber())
 		if err != nil {
 			fmt.Println("Create light server err. ", err.Error())
 			return
 		}
 		// 5.3
-		monitorSubService, err := monitor.NewMonitorService(subservice, seeleSubNode, subCfg, sclog, "Test SubChain Mointor")
+		monitorSubService, err := monitor.NewMonitorService(subservice, stemNode, subCfg, sclog, "Test SubChain Mointor")
 		if err != nil {
 			fmt.Println(err.Error())
 			return
@@ -134,14 +134,14 @@ var substartCmd = &cobra.Command{
 		// 6. register all services
 		services = append(services, subservice, monitorSubService, lightServerSubServie)
 		for _, service := range services {
-			if err := seeleSubNode.Register(service); err != nil {
+			if err := stemNode.Register(service); err != nil {
 				fmt.Println(err.Error())
 				return
 			}
 		}
 
 		// 7. node start: services and RPC
-		err = seeleSubNode.Start()
+		err = stemNode.Start()
 
 		if subMaxConns > 0 {
 			subservice.P2PServer().SetMaxConnections(subMaxConns)
@@ -189,7 +189,7 @@ var substartCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(substartCmd)
 	// func (f *FlagSet) StringVarP(p *string, name, shorthand string, value string, usage string)
-	substartCmd.Flags().StringVarP(&seeleSubchainNodeConfigFile, "subconfig", "s", "", "scdo subchain config file(required)")
+	substartCmd.Flags().StringVarP(&stemNodeConfigFile, "subconfig", "s", "", "scdo subchain config file(required)")
 	substartCmd.MustMarkFlagRequired("subconfig")
 	substartCmd.Flags().StringVarP(&accountConfig, "account", "", "", "init account info")
 	substartCmd.Flags().StringVarP(&vote, "vote", "v", "stop", "whether start with voting mode [start/stop], default \"stop\"")

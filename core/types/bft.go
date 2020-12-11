@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	// BftWitness represents a hash of "seeles practical byzantine fault tolerance"
+	// BftWitness represents a hash of "scdos practical byzantine fault tolerance"
 	// to identify whether the block is from Bft consensus engine
 	BftWitness = common.MustHexToHash("0x7365656c65732062797a616e74696e65206661756c7420746f6c6572616e6365").Bytes()
 

@@ -103,7 +103,7 @@ func NewApp(isFullNode bool) *cli.App {
 	app.HideVersion = true
 	app.Authors = []cli.Author{
 		cli.Author{
-			Name:  "scdoteamteam",
+			Name:  "scdoprojectteam",
 			Email: "dev@scdonet.com",
 		},
 	}

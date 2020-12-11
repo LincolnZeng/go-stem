@@ -15,25 +15,25 @@ func New(text string) error {
 	return errors.New(text)
 }
 
-// seeleError represents a scdo error with code and message.
-type seeleError struct {
+// scdoError represents a scdo error with code and message.
+type scdoError struct {
 	code ErrorCode
 	msg  string
 }
 
-// seeleParameterizedError represents a scdo error with code and parameterized message.
+// scdoParameterizedError represents a scdo error with code and parameterized message.
 // For type safe of common used business error, developer could define a concrete error to process.
-type seeleParameterizedError struct {
-	seeleError
+type scdoParameterizedError struct {
+	scdoError
 	parameters []interface{}
 }
 
 func newSeeleError(code ErrorCode, msg string) error {
-	return &seeleError{code, msg}
+	return &scdoError{code, msg}
 }
 
 // Error implements the error interface.
-func (err *seeleError) Error() string {
+func (err *scdoError) Error() string {
 	return err.msg
 }
 
@@ -54,8 +54,8 @@ func Create(code ErrorCode, args ...interface{}) error {
 		return fmt.Errorf("system internal error, cannot find the error code %v", code)
 	}
 
-	return &seeleParameterizedError{
-		seeleError: seeleError{code, fmt.Sprintf(errFormat, args...)},
+	return &scdoParameterizedError{
+		scdoError: scdoError{code, fmt.Sprintf(errFormat, args...)},
 		parameters: args,
 	}
 }

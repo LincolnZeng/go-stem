@@ -41,12 +41,12 @@ func newTestSeeleService() *SeeleService {
 	ctx := context.WithValue(context.Background(), key, serviceContext)
 	log := log.GetLogger("scdo")
 
-	seeleService, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
+	scdoService, err := NewSeeleService(ctx, conf, log, factory.MustGetConsensusEngine(common.Sha256Algorithm), nil, -1)
 	if err != nil {
 		panic(err)
 	}
 
-	return seeleService
+	return scdoService
 }
 
 func Test_SeeleService_Protocols(t *testing.T) {
@@ -63,7 +63,7 @@ func Test_SeeleService_Start(t *testing.T) {
 
 	s.Start(nil)
 	s.Stop()
-	assert.Equal(t, s.seeleProtocol == nil, true)
+	assert.Equal(t, s.scdoProtocol == nil, true)
 }
 
 func Test_SeeleService_Stop(t *testing.T) {
@@ -73,13 +73,13 @@ func Test_SeeleService_Stop(t *testing.T) {
 	s.Stop()
 	assert.Equal(t, s.chainDB, nil)
 	assert.Equal(t, s.accountStateDB, nil)
-	assert.Equal(t, s.seeleProtocol == nil, true)
+	assert.Equal(t, s.scdoProtocol == nil, true)
 
 	// can be called more than once
 	s.Stop()
 	assert.Equal(t, s.chainDB, nil)
 	assert.Equal(t, s.accountStateDB, nil)
-	assert.Equal(t, s.seeleProtocol == nil, true)
+	assert.Equal(t, s.scdoProtocol == nil, true)
 }
 
 func Test_SeeleService_APIs(t *testing.T) {

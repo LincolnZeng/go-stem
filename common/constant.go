@@ -132,7 +132,7 @@ func init() {
 		panic(err)
 	}
 
-	tempFolder = filepath.Join(usr.HomeDir, "seeleTemp")
+	tempFolder = filepath.Join(usr.HomeDir, "scdoTemp")
 
 	defaultDataFolder = filepath.Join(usr.HomeDir, ".scdo")
 

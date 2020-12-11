@@ -11,8 +11,8 @@ import (
 	"io/ioutil"
 	"time"
 
+	"github.com/quorum/rlp"
 	"github.com/scdoproject/go-stem/common"
-	"github.com/seeleteam/quorum/rlp"
 )
 
 const (

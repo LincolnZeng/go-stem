@@ -41,14 +41,14 @@ func (sd *SeeleBackend) Log() *log.SeeleLog { return sd.s.log }
 
 // IsSyncing check status
 func (sd *SeeleBackend) IsSyncing() bool {
-	seeleserviceAPI := sd.s.APIs()[5]
-	d := seeleserviceAPI.Service.(downloader.PrivatedownloaderAPI)
+	scdoserviceAPI := sd.s.APIs()[5]
+	d := scdoserviceAPI.Service.(downloader.PrivatedownloaderAPI)
 
 	return d.IsSyncing()
 }
 
 // ProtocolBackend return protocol
-func (sd *SeeleBackend) ProtocolBackend() api.Protocol { return sd.s.seeleProtocol }
+func (sd *SeeleBackend) ProtocolBackend() api.Protocol { return sd.s.scdoProtocol }
 
 // GetBlock returns the requested block by hash or height
 func (sd *SeeleBackend) GetBlock(hash common.Hash, height int64) (*types.Block, error) {

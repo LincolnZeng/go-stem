@@ -230,7 +230,7 @@ func (s *server) verifyHeaderCommon(header *types.BlockHeader, parents []*types.
 	return nil
 }
 
-// verifyBFTCore verify BFT consectiveness, signatures and committed seeles
+// verifyBFTCore verify BFT consectiveness, signatures and committed scdos
 func (s *server) verifyBFTCore(chain consensus.ChainReader, header *types.BlockHeader, parents []*types.BlockHeader) error {
 	number := header.Height
 	if number == 0 {

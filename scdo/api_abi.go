@@ -26,12 +26,12 @@ func (api *PublicSeeleAPI) GeneratePayload(abiJSON string, methodName string, ar
 		return "", fmt.Errorf("method '%s' not found", methodName)
 	}
 
-	seeleTypeArgs, err := bind.ParseArgs(method.Inputs, args)
+	scdoTypeArgs, err := bind.ParseArgs(method.Inputs, args)
 	if err != nil {
 		return "", err
 	}
 
-	bytes, err := parsed.Pack(methodName, seeleTypeArgs...)
+	bytes, err := parsed.Pack(methodName, scdoTypeArgs...)
 	if err != nil {
 		return "", err
 	}

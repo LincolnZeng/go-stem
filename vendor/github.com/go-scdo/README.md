@@ -59,8 +59,8 @@ buildall.bat
 # Run Scdo
 A simple version Scdo mining tutorial: English-[Scdo MiningTutorial](https://github.com/scdoproject/go-scdo/releases/tag/v1.0.1-MiningTutorial_Eng), 中文-[Scdo 挖矿教程中文简版](https://github.com/scdoproject/go-scdo/releases/tag/v1.0.1-%E4%B8%AD%E6%96%87%E7%AE%80%E7%89%88%E6%8C%96%E7%9F%BF%E6%95%99%E7%A8%8B).
 
-For running a node, please refer to [Get Started](https://scdotech.gitbook.io/wiki/developer/go-scdo/gettingstarted)([Older version](https://scdoteam.github.io/scdo-doc/docs/Getting-Started-With-Scdo Credo.html)).
-For more usage details and deeper explanations, please consult the [Scdo Wiki](https://scdotech.gitbook.io/wiki/)([Older version](https://scdoteam.github.io/scdo-doc/index.html)).
+For running a node, please refer to [Get Started](https://scdotech.gitbook.io/wiki/developer/go-scdo/gettingstarted)([Older version](https://scdoproject.github.io/scdo-doc/docs/Getting-Started-With-Scdo Credo.html)).
+For more usage details and deeper explanations, please consult the [Scdo Wiki](https://scdotech.gitbook.io/wiki/)([Older version](https://scdoproject.github.io/scdo-doc/index.html)).
 
 # Contribution
 
@@ -70,7 +70,7 @@ Here are some guidelines before you start:
 * Code must adhere to the official Go [formatting](https://golang.org/doc/effective_go.html#formatting) guidelines (i.e. uses [gofmt](https://golang.org/cmd/gofmt/)).
 * Pull requests need to be based on and opened against the `master` branch.
 * We use reviewable.io as our review tool for any pull request. Please submit and follow up on your comments in this tool. After you submit a PR, there will be a `Reviewable` button in your PR. Click this button, it will take you to the review page (it may ask you to login).
-* If you have any questions, feel free to join [chat room](https://gitter.im/scdoteamchat/dev) to communicate with our core team.
+* If you have any questions, feel free to join [chat room](https://gitter.im/scdoprojectchat/dev) to communicate with our core team.
 
 # Resources
 

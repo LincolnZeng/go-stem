@@ -135,7 +135,7 @@ func (sp *SeeleProtocol) Start() {
 	go sp.debtManager.TimingChecking()
 }
 
-// Stop stops protocol, called when seeleService quits.
+// Stop stops protocol, called when scdoService quits.
 func (sp *SeeleProtocol) Stop() {
 	event.BlockMinedEventManager.RemoveListener(sp.handleNewMinedBlock)
 	event.TransactionInsertedEventManager.RemoveListener(sp.handleNewTx)
@@ -325,7 +325,7 @@ func (p *SeeleProtocol) handleNewTx(e event.Event) {
 	peers := p.peerSet.getPeerByShard(shardId)
 	for _, peer := range peers {
 		if peer.knownTxs.Contains(tx.Hash) {
-			p.log.Debug("seeleprotocol handleNewTx: peer: %s already contains tx %s", peer.peerStrID, tx.Hash.String())
+			p.log.Debug("scdoprotocol handleNewTx: peer: %s already contains tx %s", peer.peerStrID, tx.Hash.String())
 			continue
 		}
 
@@ -843,7 +843,7 @@ handler:
 
 	p.handleDelPeer(peer.Peer)
 	p.log.Debug("scdo.protocol.handlemsg run out! peer= %s!", peer.peerStrID)
-	peer.Disconnect(fmt.Sprintf("called from seeleprotocol.handlemsg. id=%s", peer.peerStrID))
+	peer.Disconnect(fmt.Sprintf("called from scdoprotocol.handlemsg. id=%s", peer.peerStrID))
 }
 
 func (p *SeeleProtocol) GetProtocolVersion() (uint, error) {

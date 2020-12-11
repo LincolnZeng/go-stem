@@ -142,29 +142,29 @@ var startCmd = &cobra.Command{
 			}
 
 			// fullnode mode
-			seeleService, err := scdo.NewSeeleService(ctx, nCfg, slog, engine, manager, startHeight)
+			scdoService, err := scdo.NewSeeleService(ctx, nCfg, slog, engine, manager, startHeight)
 			if err != nil {
 				fmt.Println(err.Error())
 				return
 			}
 
-			seeleService.Miner().SetThreads(threads)
+			scdoService.Miner().SetThreads(threads)
 
-			lightServerService, err := light.NewServiceServer(seeleService, nCfg, lightLog, scdoNode.GetShardNumber())
+			lightServerService, err := light.NewServiceServer(scdoService, nCfg, lightLog, scdoNode.GetShardNumber())
 			if err != nil {
 				fmt.Println("Create light server err. ", err.Error())
 				return
 			}
 
 			// monitor service
-			monitorService, err := monitor.NewMonitorService(seeleService, scdoNode, nCfg, slog, "Test monitor")
+			monitorService, err := monitor.NewMonitorService(scdoService, scdoNode, nCfg, slog, "Test monitor")
 			if err != nil {
 				fmt.Println(err.Error())
 				return
 			}
 
 			services := manager.GetServices()
-			services = append(services, seeleService, monitorService, lightServerService)
+			services = append(services, scdoService, monitorService, lightServerService)
 			for _, service := range services {
 				if err := scdoNode.Register(service); err != nil {
 					fmt.Println(err.Error())
@@ -174,10 +174,10 @@ var startCmd = &cobra.Command{
 
 			err = scdoNode.Start()
 			if maxConns > 0 {
-				seeleService.P2PServer().SetMaxConnections(maxConns)
+				scdoService.P2PServer().SetMaxConnections(maxConns)
 			}
 			if maxActiveConns > 0 {
-				seeleService.P2PServer().SetMaxActiveConnections(maxActiveConns)
+				scdoService.P2PServer().SetMaxActiveConnections(maxActiveConns)
 			}
 			if err != nil {
 				fmt.Printf("got error when start node: %s\n", err)
@@ -186,13 +186,13 @@ var startCmd = &cobra.Command{
 
 			minerInfo := strings.ToLower(miner)
 			if minerInfo == "start" {
-				err = seeleService.Miner().Start()
+				err = scdoService.Miner().Start()
 				if err != nil && err != miner2.ErrMinerIsRunning {
 					fmt.Println("failed to start the miner : ", err)
 					return
 				}
 			} else if minerInfo == "stop" {
-				seeleService.Miner().Stop()
+				scdoService.Miner().Stop()
 			} else {
 				fmt.Println("invalid miner command, must be start or stop")
 				return

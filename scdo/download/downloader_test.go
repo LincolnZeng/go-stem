@@ -25,17 +25,17 @@ import (
 // TestSeeleBackend implements the SeeleBackend interface.
 type TestSeeleBackend struct {}
 
-func (seeleBackend *TestSeeleBackend) TxPool() *core.TransactionPool {
+func (scdoBackend *TestSeeleBackend) TxPool() *core.TransactionPool {
 	return nil
 } 	
 
-func (seeleBackend *TestSeeleBackend) DebtPool() *core.DebtPool {
+func (scdoBackend *TestSeeleBackend) DebtPool() *core.DebtPool {
 	return nil
 } 
 
 func NewTestSeeleBackend() *TestSeeleBackend {
-	seeleBackend := &TestSeeleBackend{}
-	return seeleBackend
+	scdoBackend := &TestSeeleBackend{}
+	return scdoBackend
 }
 
 func randomAccount(t *testing.T) (*ecdsa.PrivateKey, common.Address) {
