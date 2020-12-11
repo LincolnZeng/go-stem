@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/trie"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/trie"
 )
 
 // DebtSize debt serialized size

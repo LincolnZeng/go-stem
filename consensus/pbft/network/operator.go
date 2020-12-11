@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/seeleteam/go-seele/consensus/pbft/consensus"
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/consensus/pbft/consensus"
+	"github.com/scdoproject/go-stem/log"
 )
 
 type Node struct {

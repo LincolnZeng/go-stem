@@ -9,8 +9,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/miner"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/miner"
 )
 
 // PrivateMinerAPI provides an API to access miner information.

@@ -8,8 +8,8 @@ package core
 import (
 	"reflect"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
 )
 
 func (c *core) sendCommit() {

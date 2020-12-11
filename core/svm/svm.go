@@ -8,14 +8,14 @@ package svm
 import (
 	"math/big"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/contract/system"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/core/svm/evm"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/core/vm"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/contract/system"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/core/svm/evm"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/core/vm"
 )
 
 // Context for other vm constructs

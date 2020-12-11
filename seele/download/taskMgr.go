@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/log"
 )
 
 const (

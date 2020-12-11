@@ -10,15 +10,15 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/database/leveldb"
 
 	"github.com/ethereum/go-ethereum/event"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
-	"github.com/seeleteam/go-seele/consensus/istanbul/validator"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database"
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
+	"github.com/scdoproject/go-stem/consensus/istanbul/validator"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database"
+	"github.com/scdoproject/go-stem/log"
 )
 
 var testLogger = log.GetLogger("test")

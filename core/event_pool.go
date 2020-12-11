@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/listener"
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/listener"
+	"github.com/scdoproject/go-stem/log"
 )
 
 const MaxBlockHeightGap = 40

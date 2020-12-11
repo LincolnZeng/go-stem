@@ -8,12 +8,12 @@ package evm
 import (
 	"math/big"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database/leveldb"
 )
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

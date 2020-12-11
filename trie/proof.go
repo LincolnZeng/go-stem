@@ -9,8 +9,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto/sha3"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto/sha3"
 )
 
 // GetProof constructs a merkle proof for key. The result contains all encoded nodes

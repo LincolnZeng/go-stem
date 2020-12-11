@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/seeleteam/go-seele/node"
+	"github.com/scdoproject/go-stem/node"
 	"github.com/stretchr/testify/assert"
 )
 

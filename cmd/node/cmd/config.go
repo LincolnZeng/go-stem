@@ -15,14 +15,14 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/seeleteam/go-seele/cmd/util"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/log/comm"
-	"github.com/seeleteam/go-seele/node"
-	"github.com/seeleteam/go-seele/p2p"
+	"github.com/scdoproject/go-stem/cmd/util"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/log/comm"
+	"github.com/scdoproject/go-stem/node"
+	"github.com/scdoproject/go-stem/p2p"
 )
 
 // GetConfigFromFile unmarshals the config from the given file

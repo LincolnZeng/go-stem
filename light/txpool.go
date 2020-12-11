@@ -9,11 +9,11 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/event"
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/event"
+	"github.com/scdoproject/go-stem/log"
 )
 
 const (

@@ -13,14 +13,14 @@ import (
 	"path/filepath"
 	"testing"
 
-	api2 "github.com/seeleteam/go-seele/api"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
-	"github.com/seeleteam/go-seele/consensus/factory"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/log"
+	api2 "github.com/scdoproject/go-stem/api"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
+	"github.com/scdoproject/go-stem/consensus/factory"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/log"
 	"github.com/stretchr/testify/assert"
 )
 

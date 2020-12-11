@@ -12,14 +12,14 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
-	"github.com/seeleteam/go-seele/consensus/istanbul/validator"
-	core2 "github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
+	"github.com/scdoproject/go-stem/consensus/istanbul/validator"
+	core2 "github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database/leveldb"
 )
 
 type testerVote struct {

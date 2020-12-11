@@ -15,17 +15,17 @@ import (
 	"testing"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/bft"
-	bftCore "github.com/seeleteam/go-seele/consensus/bft/core"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/core/txs"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/bft"
+	bftCore "github.com/scdoproject/go-stem/consensus/bft/core"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/core/txs"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database/leveldb"
 )
 
 var genesisAccount = crypto.MustGenerateShardAddress(1)
@@ -182,7 +182,7 @@ func newBlockWithoutSeal(chain *core.Blockchain, engine *server, parent *types.B
 	return block
 }
 
-// ok  	github.com/seeleteam/go-seele/consensus/bft/server	0.085s
+// ok  	github.com/scdoproject/go-stem/consensus/bft/server	0.085s
 // Success: Tests passed.
 func TestSealStopChannel(t *testing.T) {
 	// var timeStart uint64
@@ -288,7 +288,7 @@ func TestSealCommitted(t *testing.T) {
 }
 
 /*
-ok  	github.com/seeleteam/go-seele/consensus/bft/server	0.093s
+ok  	github.com/scdoproject/go-stem/consensus/bft/server	0.093s
 Success: Tests passed.
 */
 func TestVerifyHeader(t *testing.T) {
@@ -380,12 +380,12 @@ func TestVerifyHeader(t *testing.T) {
 
 /*
 panic: test timed out after 30s
-github.com/seeleteam/go-seele/consensus/bft/server.(*server).SealResult(0xc000118120, 0x463ac00, 0xc000114fa0, 0xc0000948a0, 0x0, 0x0, 0x0, 0x0)
-	/Users/seele/go/src/github.com/seeleteam/go-seele/consensus/bft/server/engine.go:202 +0x58c
-github.com/seeleteam/go-seele/consensus/bft/server.newBlock(0xc0001f43c0, 0xc00011a120, 0xc0000ce600, 0xc000154701)
-	/Users/seele/go/src/github.com/seeleteam/go-seele/consensus/bft/server/engine_test.go:126 +0x70
-github.com/seeleteam/go-seele/consensus/bft/server.TestVerifySeal(0xc0001b8100)
-	/Users/seele/go/src/github.com/seeleteam/go-seele/consensus/bft/server/engine_test.go:358 +0x152
+github.com/scdoproject/go-stem/consensus/bft/server.(*server).SealResult(0xc000118120, 0x463ac00, 0xc000114fa0, 0xc0000948a0, 0x0, 0x0, 0x0, 0x0)
+	/Users/seele/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine.go:202 +0x58c
+github.com/scdoproject/go-stem/consensus/bft/server.newBlock(0xc0001f43c0, 0xc00011a120, 0xc0000ce600, 0xc000154701)
+	/Users/seele/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine_test.go:126 +0x70
+github.com/scdoproject/go-stem/consensus/bft/server.TestVerifySeal(0xc0001b8100)
+	/Users/seele/go/src/github.com/scdoproject/go-stem/consensus/bft/server/engine_test.go:358 +0x152
 */
 func TestVerifySeal(t *testing.T) {
 	chain, engine := newBlockChain(1) //generate 1 node in verifier set
@@ -426,7 +426,7 @@ func TestVerifySeal(t *testing.T) {
 }
 
 /*
-ok  	github.com/seeleteam/go-seele/consensus/bft/server	0.033s
+ok  	github.com/scdoproject/go-stem/consensus/bft/server	0.033s
 Success: Tests passed.
 */
 func TestPrepareExtra(t *testing.T) {
@@ -462,7 +462,7 @@ func TestPrepareExtra(t *testing.T) {
 }
 
 /*
-ok  	github.com/seeleteam/go-seele/consensus/bft/server	0.035s
+ok  	github.com/scdoproject/go-stem/consensus/bft/server	0.035s
 Success: Tests passed.
 */
 func TestWriteSeal(t *testing.T) {
@@ -509,7 +509,7 @@ func TestWriteSeal(t *testing.T) {
 }
 
 /*
-ok  	github.com/seeleteam/go-seele/consensus/bft/server	0.045s
+ok  	github.com/scdoproject/go-stem/consensus/bft/server	0.045s
 Success: Tests passed.
 */
 func TestWriteCommittedSeals(t *testing.T) {
@@ -556,7 +556,7 @@ func TestWriteCommittedSeals(t *testing.T) {
 }
 
 /*
-ok  	github.com/seeleteam/go-seele/consensus/bft/server	0.064s
+ok  	github.com/scdoproject/go-stem/consensus/bft/server	0.064s
 Success: Tests passed.
 */
 func TestPrepare(t *testing.T) {

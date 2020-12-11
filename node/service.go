@@ -6,8 +6,8 @@
 package node
 
 import (
-	"github.com/seeleteam/go-seele/p2p"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/p2p"
+	"github.com/scdoproject/go-stem/rpc"
 )
 
 // Service represents a service which is registered to the node after the node starts.

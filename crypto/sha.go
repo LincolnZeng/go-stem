@@ -6,8 +6,8 @@
 package crypto
 
 import (
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto/sha3"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto/sha3"
 )
 
 // Keccak256 calculates and returns the Keccak256 hash of the input data.

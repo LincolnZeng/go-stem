@@ -8,7 +8,7 @@ package p2p
 import (
 	"fmt"
 
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 const (

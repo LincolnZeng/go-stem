@@ -1,0 +1,59 @@
+{
+    "basic": {
+        "name": "scdo node1",
+        "version": "1.0",
+        "dataDir": "scdo-node1",
+        "address": "0.0.0.0:8027",
+        "coinbase": "1S01cf0b32593068f2ace7c472d5f127d3422d3b61",
+        "algorithm": "zpow"
+    },
+    "p2p": {
+        "privateKey": "0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479",
+        "staticNodes": [
+            "74.208.207.184:8057",
+            "74.208.207.184:8058",
+            "74.208.207.184:8059",
+            "74.208.207.184:8056",
+            "74.208.136.152:8056",
+            "74.208.136.152:8057",
+            "74.208.136.152:8058",
+            "74.208.136.152:8059"
+        ],
+        "address": "0.0.0.0:8057",
+        "networkID": "scdo"
+    },
+    "log": {
+        "isDebug": false,
+        "printLog": true
+    },
+    "httpServer": {
+        "address": "0.0.0.0:8037",
+        "crossorigins": [
+            "*"
+        ],
+        "whiteHost": [
+            "*"
+        ]
+    },
+    "wsserver": {
+        "address": "0.0.0.0:8047",
+        "crossorigins": [
+            "*"
+        ]
+    },
+    "ipcconfig": {
+        "name": "scdo1.ipc"
+    },
+    "metrics": {
+        "address": "0.0.0.0:8087",
+        "duration": 10,
+        "database": "influxdb",
+        "username": "test",
+        "password": "test123"
+    },
+    "genesis": {
+        "difficult": 2000000,
+        "shard": 1,
+        "timestamp": 1596942480
+    }
+}

@@ -6,11 +6,11 @@
 package util
 
 import (
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/log/comm"
-	"github.com/seeleteam/go-seele/metrics"
-	"github.com/seeleteam/go-seele/node"
-	"github.com/seeleteam/go-seele/p2p"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/log/comm"
+	"github.com/scdoproject/go-stem/metrics"
+	"github.com/scdoproject/go-stem/node"
+	"github.com/scdoproject/go-stem/p2p"
 )
 
 // Config is the Configuration of node

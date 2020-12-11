@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/seeleteam/go-seele/accounts/abi"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/accounts/abi"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
 	"github.com/stretchr/testify/assert"
 )
 

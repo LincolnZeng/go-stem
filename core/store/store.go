@@ -8,8 +8,8 @@ package store
 import (
 	"math/big"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 // BlockchainStore is the interface that wraps the atomic CRUD methods of blockchain.

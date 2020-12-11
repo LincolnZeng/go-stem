@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/seeleteam/go-seele/consensus/bft"
+	"github.com/scdoproject/go-stem/consensus/bft"
 )
 
 // sendPrepare : encode -> broadcast

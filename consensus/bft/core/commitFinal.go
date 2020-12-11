@@ -1,6 +1,6 @@
 package core
 
-import "github.com/seeleteam/go-seele/common"
+import "github.com/scdoproject/go-stem/common"
 
 func (c *core) handleFinalCommit() error {
 	c.log.Debug("received a final commit proposal")

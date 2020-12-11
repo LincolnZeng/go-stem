@@ -12,11 +12,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	log2 "github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/p2p"
-	"github.com/seeleteam/go-seele/p2p/discovery"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	log2 "github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/p2p"
+	"github.com/scdoproject/go-stem/p2p/discovery"
 	"github.com/stretchr/testify/assert"
 )
 

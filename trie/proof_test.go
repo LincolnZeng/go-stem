@@ -13,10 +13,10 @@ import (
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
-	common2 "github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/crypto/sha3"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	common2 "github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/crypto/sha3"
+	"github.com/scdoproject/go-stem/database/leveldb"
 	"github.com/stretchr/testify/assert"
 )
 

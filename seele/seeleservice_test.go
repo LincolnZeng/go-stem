@@ -11,12 +11,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/factory"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/node"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/factory"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/node"
 	"github.com/stretchr/testify/assert"
 )
 

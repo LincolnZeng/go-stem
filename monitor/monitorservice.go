@@ -6,11 +6,11 @@
 package monitor
 
 import (
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/node"
-	"github.com/seeleteam/go-seele/p2p"
-	rpc "github.com/seeleteam/go-seele/rpc"
-	"github.com/seeleteam/go-seele/seele"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/node"
+	"github.com/scdoproject/go-stem/p2p"
+	rpc "github.com/scdoproject/go-stem/rpc"
+	"github.com/scdoproject/go-stem/seele"
 )
 
 // MonitorService implements some rpc interfaces provided by a monitor server

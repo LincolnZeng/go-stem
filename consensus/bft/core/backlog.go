@@ -1,7 +1,7 @@
 package core
 
 import (
-	"github.com/seeleteam/go-seele/consensus/bft"
+	"github.com/scdoproject/go-stem/consensus/bft"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

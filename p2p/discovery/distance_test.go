@@ -9,8 +9,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
 )
 
 func Test_Dic(t *testing.T) {

@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/seeleteam/go-seele/cmd/client/cmd"
+	"github.com/scdoproject/go-stem/cmd/client/cmd"
 )
 
 func main() {

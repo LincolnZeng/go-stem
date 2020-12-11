@@ -3,7 +3,7 @@ package network
 import (
 	"fmt"
 
-	"github.com/seeleteam/go-seele/consensus/pbft/consensus"
+	"github.com/scdoproject/go-stem/consensus/pbft/consensus"
 )
 
 func LogMsg(msg interface{}) {

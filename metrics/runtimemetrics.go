@@ -10,7 +10,7 @@ import (
 	"time"
 
 	metrics "github.com/rcrowley/go-metrics"
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 	"github.com/shirou/gopsutil/disk"
 )
 

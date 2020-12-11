@@ -9,9 +9,9 @@ import (
 	"math/big"
 
 	"github.com/pkg/errors"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/crypto"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/crypto"
 )
 
 const (

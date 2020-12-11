@@ -9,15 +9,15 @@ package miner
 // 	"math/big"
 // 	"time"
 
-// 	"github.com/seeleteam/go-seele/common"
-// 	"github.com/seeleteam/go-seele/common/memory"
-// 	"github.com/seeleteam/go-seele/consensus"
-// 	"github.com/seeleteam/go-seele/core"
-// 	"github.com/seeleteam/go-seele/core/state"
-// 	"github.com/seeleteam/go-seele/core/txs"
-// 	"github.com/seeleteam/go-seele/core/types"
-// 	"github.com/seeleteam/go-seele/database"
-// 	"github.com/seeleteam/go-seele/log"
+// 	"github.com/scdoproject/go-stem/common"
+// 	"github.com/scdoproject/go-stem/common/memory"
+// 	"github.com/scdoproject/go-stem/consensus"
+// 	"github.com/scdoproject/go-stem/core"
+// 	"github.com/scdoproject/go-stem/core/state"
+// 	"github.com/scdoproject/go-stem/core/txs"
+// 	"github.com/scdoproject/go-stem/core/types"
+// 	"github.com/scdoproject/go-stem/database"
+// 	"github.com/scdoproject/go-stem/log"
 // )
 
 // // Task is a mining work for engine, containing block header, transactions, and transaction receipts.

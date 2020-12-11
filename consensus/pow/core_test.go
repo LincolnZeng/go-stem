@@ -12,8 +12,8 @@ import (
 	"testing"
 
 	"github.com/rcrowley/go-metrics"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/log"
 	"github.com/stretchr/testify/assert"
 )
 

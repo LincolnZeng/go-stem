@@ -10,8 +10,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/crypto"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/crypto"
 )
 
 func Test_PassPhrase(t *testing.T) {

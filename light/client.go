@@ -9,17 +9,17 @@ import (
 	"context"
 	"path/filepath"
 
-	"github.com/seeleteam/go-seele/api"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/database"
-	"github.com/seeleteam/go-seele/database/leveldb"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/node"
-	"github.com/seeleteam/go-seele/p2p"
-	"github.com/seeleteam/go-seele/rpc"
-	"github.com/seeleteam/go-seele/seele"
+	"github.com/scdoproject/go-stem/api"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/database"
+	"github.com/scdoproject/go-stem/database/leveldb"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/node"
+	"github.com/scdoproject/go-stem/p2p"
+	"github.com/scdoproject/go-stem/rpc"
+	"github.com/scdoproject/go-stem/seele"
 )
 
 // ServiceClient implements service for light mode.

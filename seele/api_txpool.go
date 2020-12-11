@@ -6,9 +6,9 @@
 package seele
 
 import (
-	api2 "github.com/seeleteam/go-seele/api"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
+	api2 "github.com/scdoproject/go-stem/api"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
 )
 
 // TransactionPoolAPI provides an API to access transaction pool information.

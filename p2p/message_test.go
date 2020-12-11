@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core"
 	"github.com/stretchr/testify/assert"
 )
 

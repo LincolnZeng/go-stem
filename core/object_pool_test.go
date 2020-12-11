@@ -10,12 +10,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database/leveldb"
 )
 
 func randomAccount(t *testing.T) (*ecdsa.PrivateKey, common.Address) {

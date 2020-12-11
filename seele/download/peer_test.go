@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/p2p"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/p2p"
 	"github.com/stretchr/testify/assert"
 )
 

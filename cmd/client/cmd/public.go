@@ -12,11 +12,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/seeleteam/go-seele/cmd/util"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/keystore"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/cmd/util"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/keystore"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/rpc"
 	"github.com/urfave/cli"
 )
 

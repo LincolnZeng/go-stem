@@ -11,9 +11,9 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	log2 "github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	log2 "github.com/scdoproject/go-stem/log"
 )
 
 func getBuckets() *bucket {

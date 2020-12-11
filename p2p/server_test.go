@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/p2p/discovery"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/p2p/discovery"
 	"github.com/stretchr/testify/assert"
 )
 

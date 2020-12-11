@@ -8,21 +8,21 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/log/comm"
-	"github.com/seeleteam/go-seele/metrics"
-	miner2 "github.com/seeleteam/go-seele/miner"
-	"github.com/seeleteam/go-seele/monitor"
-	"github.com/seeleteam/go-seele/seele/lightclients"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/log/comm"
+	"github.com/scdoproject/go-stem/metrics"
+	miner2 "github.com/scdoproject/go-stem/miner"
+	"github.com/scdoproject/go-stem/monitor"
+	"github.com/scdoproject/go-stem/seele/lightclients"
 
-	"github.com/seeleteam/go-seele/light"
+	"github.com/scdoproject/go-stem/light"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/factory"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/factory"
 
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/node"
-	"github.com/seeleteam/go-seele/seele"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/node"
+	"github.com/scdoproject/go-stem/seele"
 	"github.com/spf13/cobra"
 )
 

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/seeleteam/go-seele/consensus/pbft/network"
+	"github.com/scdoproject/go-stem/consensus/pbft/network"
 )
 
 func main() {

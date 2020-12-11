@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 // IsVerifierTx return whether the tx Is operate tx or not?

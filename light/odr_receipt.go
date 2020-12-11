@@ -6,11 +6,11 @@
 package light
 
 import (
-	"github.com/seeleteam/go-seele/api"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/api"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 var errReceipIndexNil = errors.New("got a nil receipt index")

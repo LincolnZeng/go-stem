@@ -9,11 +9,11 @@ import (
 	"bytes"
 	"encoding/json"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
-	"github.com/seeleteam/go-seele/consensus/istanbul/validator"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/database"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
+	"github.com/scdoproject/go-stem/consensus/istanbul/validator"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/database"
 )
 
 const (

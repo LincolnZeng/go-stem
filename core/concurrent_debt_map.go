@@ -8,9 +8,9 @@ package core
 import (
 	"sync"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 var errDebtFull = errors.New("too many debts in to confirmed debt")

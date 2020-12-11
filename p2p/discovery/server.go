@@ -8,7 +8,7 @@ package discovery
 import (
 	"net"
 
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 // StartService start node udp service

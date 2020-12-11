@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/seeleteam/go-seele/accounts/abi"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
+	"github.com/scdoproject/go-stem/accounts/abi"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
 )
 
 // ParseArgs parse the args string into the Seele type and return an error if

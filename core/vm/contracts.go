@@ -23,9 +23,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/crypto/bn256"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/crypto/bn256"
 	"golang.org/x/crypto/ripemd160"
 )
 

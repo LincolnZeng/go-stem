@@ -8,7 +8,7 @@ package keystore
 import (
 	"io/ioutil"
 
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 // GetKey get private key from a file

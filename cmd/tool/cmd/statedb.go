@@ -13,12 +13,12 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database"
+	"github.com/scdoproject/go-stem/database/leveldb"
 	"github.com/spf13/cobra"
 )
 

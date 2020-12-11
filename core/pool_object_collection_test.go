@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/core/types"
 	"github.com/stretchr/testify/assert"
 )
 

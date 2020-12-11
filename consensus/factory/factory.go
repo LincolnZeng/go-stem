@@ -10,17 +10,17 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/bft"
-	"github.com/seeleteam/go-seele/consensus/bft/server"
-	"github.com/seeleteam/go-seele/consensus/ethash"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
-	"github.com/seeleteam/go-seele/consensus/istanbul/backend"
-	"github.com/seeleteam/go-seele/consensus/pow"
-	"github.com/seeleteam/go-seele/consensus/spow"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/bft"
+	"github.com/scdoproject/go-stem/consensus/bft/server"
+	"github.com/scdoproject/go-stem/consensus/ethash"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
+	"github.com/scdoproject/go-stem/consensus/istanbul/backend"
+	"github.com/scdoproject/go-stem/consensus/pow"
+	"github.com/scdoproject/go-stem/consensus/spow"
+	"github.com/scdoproject/go-stem/database/leveldb"
 )
 
 // GetConsensusEngine get consensus engine according to miner algorithm name

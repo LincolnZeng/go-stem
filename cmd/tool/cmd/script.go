@@ -14,12 +14,12 @@ import (
 	"path/filepath"
 	"reflect"
 
-	"github.com/seeleteam/go-seele/cmd/node/cmd"
-	"github.com/seeleteam/go-seele/cmd/util"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/p2p/discovery"
+	"github.com/scdoproject/go-stem/cmd/node/cmd"
+	"github.com/scdoproject/go-stem/cmd/util"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/p2p/discovery"
 	"github.com/spf13/cobra"
 )
 

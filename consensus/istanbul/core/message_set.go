@@ -11,8 +11,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
 )
 
 // Construct a new message set to accumulate messages for given sequence/view number.

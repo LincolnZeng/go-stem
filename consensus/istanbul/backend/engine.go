@@ -14,15 +14,15 @@ import (
 
 	"github.com/ethereum/go-ethereum/rlp"
 	lru "github.com/hashicorp/golang-lru"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
-	istanbulCore "github.com/seeleteam/go-seele/consensus/istanbul/core"
-	"github.com/seeleteam/go-seele/consensus/istanbul/validator"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
+	istanbulCore "github.com/scdoproject/go-stem/consensus/istanbul/core"
+	"github.com/scdoproject/go-stem/consensus/istanbul/validator"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/rpc"
 )
 
 const (

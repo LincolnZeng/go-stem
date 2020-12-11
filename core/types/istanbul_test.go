@@ -10,9 +10,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
-	//"github.com/seeleteam/go-seele/crypto"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
+	//"github.com/scdoproject/go-stem/crypto"
 )
 
 /*func TestHeaderHash(t *testing.T) {

@@ -12,8 +12,8 @@ import (
 	"runtime"
 	"runtime/pprof"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 // PrivateDebugAPI provides an API to access full node-related information for debug.

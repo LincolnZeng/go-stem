@@ -11,8 +11,8 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 // Proposal supports retrieving height and serialized block to be used during Istanbul consensus.

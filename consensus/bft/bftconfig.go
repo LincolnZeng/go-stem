@@ -6,7 +6,7 @@
 package bft
 
 import (
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 type ProposerPolicy uint64

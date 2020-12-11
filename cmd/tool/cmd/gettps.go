@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/seeleteam/go-seele/seele"
+	"github.com/scdoproject/go-stem/seele"
 	"github.com/spf13/cobra"
 )
 

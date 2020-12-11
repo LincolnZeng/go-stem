@@ -5,7 +5,7 @@
 
 package main
 
-import "github.com/seeleteam/go-seele/cmd/node/cmd"
+import "github.com/scdoproject/go-stem/cmd/node/cmd"
 
 func main() {
 	cmd.Execute()

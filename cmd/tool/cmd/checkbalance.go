@@ -12,8 +12,8 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/params"
-	"github.com/seeleteam/go-seele/api"
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/api"
+	"github.com/scdoproject/go-stem/common"
 	"github.com/spf13/cobra"
 )
 

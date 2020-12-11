@@ -9,7 +9,7 @@ import (
 	"math/big"
 	"math/rand"
 	"sync"
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 type peerFilter struct {

@@ -9,11 +9,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/log/comm"
-	"github.com/seeleteam/go-seele/p2p"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/log/comm"
+	"github.com/scdoproject/go-stem/p2p"
+	"github.com/scdoproject/go-stem/rpc"
 	"github.com/stretchr/testify/assert"
 )
 

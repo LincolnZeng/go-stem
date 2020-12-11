@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/seeleteam/go-seele/consensus/istanbul"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 func makeBlock(number int64) *types.Block {

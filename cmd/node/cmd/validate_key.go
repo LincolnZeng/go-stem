@@ -8,7 +8,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/seeleteam/go-seele/crypto"
+	"github.com/scdoproject/go-stem/crypto"
 	"github.com/spf13/cobra"
 )
 

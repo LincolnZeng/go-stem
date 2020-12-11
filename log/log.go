@@ -13,8 +13,8 @@ import (
 	"time"
 
 	"github.com/lestrrat-go/file-rotatelogs"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/log/comm"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/log/comm"
 	"github.com/sirupsen/logrus"
 )
 

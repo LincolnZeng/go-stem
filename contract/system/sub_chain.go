@@ -9,8 +9,8 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/p2p/discovery"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/p2p/discovery"
 )
 
 const (

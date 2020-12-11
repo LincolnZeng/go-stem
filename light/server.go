@@ -9,14 +9,14 @@ import (
 	rand2 "math/rand"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/event"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/node"
-	"github.com/seeleteam/go-seele/p2p"
-	"github.com/seeleteam/go-seele/rpc"
-	"github.com/seeleteam/go-seele/seele"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/event"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/node"
+	"github.com/scdoproject/go-stem/p2p"
+	"github.com/scdoproject/go-stem/rpc"
+	"github.com/scdoproject/go-stem/seele"
 )
 
 // ServiceServer implements light server service.

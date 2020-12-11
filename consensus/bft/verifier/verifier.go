@@ -1,8 +1,8 @@
 package verifier
 
 import (
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus/bft"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus/bft"
 )
 
 type verifier struct {

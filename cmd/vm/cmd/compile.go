@@ -15,7 +15,7 @@ import (
 	"strings"
 
 	"github.com/ethereum/go-ethereum/rlp"
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 type solCompileOutput struct {

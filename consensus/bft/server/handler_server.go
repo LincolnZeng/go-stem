@@ -5,11 +5,11 @@ import (
 	"fmt"
 
 	lru "github.com/hashicorp/golang-lru"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/bft"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/p2p"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/bft"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/p2p"
 )
 
 /*this file will implement all methods at consensus/consensus.go Handler interface*/

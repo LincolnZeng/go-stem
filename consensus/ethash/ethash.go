@@ -27,11 +27,11 @@ import (
 	"time"
 
 	"github.com/rcrowley/go-metrics"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/rpc"
 )
 
 var ErrInvalidDumpMagic = errors.New("invalid dump magic")

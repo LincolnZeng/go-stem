@@ -8,8 +8,8 @@ package types
 import (
 	"encoding/json"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/hexutil"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/hexutil"
 )
 
 // Log represents the contract execution log.

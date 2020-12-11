@@ -16,11 +16,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/seeleteam/go-seele/api"
-	"github.com/seeleteam/go-seele/cmd/util"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/api"
+	"github.com/scdoproject/go-stem/cmd/util"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/rpc"
 	"github.com/spf13/cobra"
 )
 

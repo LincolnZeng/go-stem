@@ -8,8 +8,8 @@ package core
 import (
 	"time"
 
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/istanbul"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
 )
 
 func (c *core) sendPreprepare(request *istanbul.Request) {

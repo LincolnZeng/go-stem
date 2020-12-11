@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/seeleteam/go-seele/crypto"
+	"github.com/scdoproject/go-stem/crypto"
 	"github.com/stretchr/testify/assert"
 )
 

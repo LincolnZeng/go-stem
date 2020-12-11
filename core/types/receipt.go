@@ -6,9 +6,9 @@
 package types
 
 import (
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/trie"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/trie"
 )
 
 var emptyReceiptRootHash = crypto.MustHash("empty receipt root hash")

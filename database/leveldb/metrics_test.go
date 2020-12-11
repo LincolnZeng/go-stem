@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/log"
 )
 
 func Test_StartMetrics(t *testing.T) {

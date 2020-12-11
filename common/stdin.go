@@ -10,7 +10,7 @@ import (
 	"fmt"
 
 	"github.com/howeyc/gopass"
-	"github.com/seeleteam/go-seele/common/errors"
+	"github.com/scdoproject/go-stem/common/errors"
 )
 
 // GetPassword ask user for password interactively

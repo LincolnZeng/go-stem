@@ -3,13 +3,13 @@ package api
 import (
 	"math/big"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/state"
-	"github.com/seeleteam/go-seele/core/store"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/p2p"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/state"
+	"github.com/scdoproject/go-stem/core/store"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/p2p"
+	"github.com/scdoproject/go-stem/rpc"
 )
 
 // Backend interface provides the common API services (that are provided by

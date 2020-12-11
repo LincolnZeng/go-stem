@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/seeleteam/go-seele/cmd/util"
+	"github.com/scdoproject/go-stem/cmd/util"
 	"github.com/spf13/cobra"
-        "github.com/seeleteam/go-seele/common"
+        "github.com/scdoproject/go-stem/common"
 )
 
 var version bool

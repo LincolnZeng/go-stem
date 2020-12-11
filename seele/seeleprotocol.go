@@ -11,16 +11,16 @@ import (
 	"sync"
 	"time"
 
-	"github.com/seeleteam/go-seele/common/memory"
+	"github.com/scdoproject/go-stem/common/memory"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/event"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/p2p"
-	downloader "github.com/seeleteam/go-seele/seele/download"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/event"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/p2p"
+	downloader "github.com/scdoproject/go-stem/seele/download"
 )
 
 var (

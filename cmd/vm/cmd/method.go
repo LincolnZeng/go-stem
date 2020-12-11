@@ -13,9 +13,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/seeleteam/go-seele/common/hexutil"
+	"github.com/scdoproject/go-stem/common/hexutil"
 
-	"github.com/seeleteam/go-seele/common"
+	"github.com/scdoproject/go-stem/common"
 )
 
 type solMethod struct {

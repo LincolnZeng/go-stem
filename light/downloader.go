@@ -9,12 +9,12 @@ import (
 	rand2 "math/rand"
 	"sync"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/core"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/p2p"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/core"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/p2p"
 )
 
 var (

@@ -3,8 +3,8 @@ package core
 import (
 	"time"
 
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/bft"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/bft"
 )
 
 /*

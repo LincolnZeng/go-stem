@@ -23,9 +23,9 @@ If you want to directly run the node and use client without setting up the compi
 
 | Operation System |      Download Link     |
 |---------|----------------------------------------------------------|
-| Linux   | [https://github.com/seeleteam/go-seele/releases]|
-| MacOs   | [https://github.com/seeleteam/go-seele/releases]|
-| Windows | [https://github.com/seeleteam/go-seele/releases]|
+| Linux   | [https://github.com/scdoproject/go-stem/releases]|
+| MacOs   | [https://github.com/scdoproject/go-stem/releases]|
+| Windows | [https://github.com/scdoproject/go-stem/releases]|
 
 # Or Download & Build the source
 
@@ -36,13 +36,13 @@ Building the Seele project requires both a Go (version 1.7 or later) compiler an
 - Clone the go-seele repository to the GOPATH directory:
 
 ```
-go get -u -v github.com/seeleteam/go-seele/...
+go get -u -v github.com/scdoproject/go-stem/...
 ```
 
 - Once successfully cloned source code:
 
 ```
-cd GOPATH/src/github.com/seeleteam/go-seele/
+cd GOPATH/src/github.com/scdoproject/go-stem/
 ```
 
 - Linux & Mac
@@ -58,7 +58,7 @@ buildall.bat
 ```
 
 # Run Seele
-A simple version Seele mining tutorial: English-[SeeleMiningTutorial](https://github.com/seeleteam/go-seele/releases/tag/v1.0.1-MiningTutorial_Eng), 中文-[Seele挖矿教程中文简版](https://github.com/seeleteam/go-seele/releases/tag/v1.0.1-%E4%B8%AD%E6%96%87%E7%AE%80%E7%89%88%E6%8C%96%E7%9F%BF%E6%95%99%E7%A8%8B).
+A simple version Seele mining tutorial: English-[SeeleMiningTutorial](https://github.com/scdoproject/go-stem/releases/tag/v1.0.1-MiningTutorial_Eng), 中文-[Seele挖矿教程中文简版](https://github.com/scdoproject/go-stem/releases/tag/v1.0.1-%E4%B8%AD%E6%96%87%E7%AE%80%E7%89%88%E6%8C%96%E7%9F%BF%E6%95%99%E7%A8%8B).
 
 For running a node, please refer to [Get Started](https://seeletech.gitbook.io/wiki/developer/getting-started-with-seele)([Older version](https://seeleteam.github.io/seele-doc/docs/Getting-Started-With-Seele.html)).
 For more usage details and deeper explanations, please consult the [Seele Wiki](https://seeletech.gitbook.io/wiki/)([Older version](https://seeleteam.github.io/seele-doc/index.html)).
@@ -83,4 +83,4 @@ Here are some guidelines before you start:
 
 # License
 
-[go-seele/LICENSE](https://github.com/seeleteam/go-seele/blob/master/LICENSE)
+[go-seele/LICENSE](https://github.com/scdoproject/go-stem/blob/master/LICENSE)

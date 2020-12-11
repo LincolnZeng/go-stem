@@ -6,8 +6,8 @@
 package utils
 
 import (
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/core/types"
 )
 
 func VerifyHeaderCommon(header, parent *types.BlockHeader) error {

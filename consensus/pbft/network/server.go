@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/seeleteam/go-seele/consensus/pbft/consensus"
+	"github.com/scdoproject/go-stem/consensus/pbft/consensus"
 )
 
 type Server struct {

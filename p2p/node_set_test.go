@@ -8,8 +8,8 @@ package p2p
 import (
 	"testing"
 
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/p2p/discovery"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/p2p/discovery"
 )
 
 func getNode() *discovery.Node {

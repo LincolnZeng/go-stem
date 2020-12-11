@@ -6,7 +6,7 @@
 package core
 
 import (
-	"github.com/seeleteam/go-seele/consensus/istanbul"
+	"github.com/scdoproject/go-stem/consensus/istanbul"
 )
 
 type backlogEvent struct {

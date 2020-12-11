@@ -14,9 +14,9 @@ import (
 	"io"
 
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/common/errors"
-	"github.com/seeleteam/go-seele/crypto"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/common/errors"
+	"github.com/scdoproject/go-stem/crypto"
 	"golang.org/x/crypto/scrypt"
 )
 

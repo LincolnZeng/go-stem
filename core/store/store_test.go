@@ -9,10 +9,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/crypto"
-	"github.com/seeleteam/go-seele/database/leveldb"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/crypto"
+	"github.com/scdoproject/go-stem/database/leveldb"
 	"github.com/stretchr/testify/assert"
 	"github.com/syndtr/goleveldb/leveldb/errors"
 )

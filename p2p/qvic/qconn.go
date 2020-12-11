@@ -14,7 +14,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/seeleteam/go-seele/log"
+	"github.com/scdoproject/go-stem/log"
 )
 
 // Qvic const

@@ -11,9 +11,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/log"
-	"github.com/seeleteam/go-seele/p2p"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/log"
+	"github.com/scdoproject/go-stem/p2p"
 )
 
 // MsgWaitTimeout this timeout should not be happened, but we need to handle it in case of such errors.

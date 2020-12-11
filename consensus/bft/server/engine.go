@@ -6,11 +6,11 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/consensus"
-	"github.com/seeleteam/go-seele/consensus/bft"
-	"github.com/seeleteam/go-seele/core/types"
-	"github.com/seeleteam/go-seele/rpc"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/consensus"
+	"github.com/scdoproject/go-stem/consensus/bft"
+	"github.com/scdoproject/go-stem/core/types"
+	"github.com/scdoproject/go-stem/rpc"
 )
 
 /*

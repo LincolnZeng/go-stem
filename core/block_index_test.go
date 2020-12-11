@@ -9,10 +9,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/seeleteam/go-seele/core/store"
+	"github.com/scdoproject/go-stem/core/store"
 
-	"github.com/seeleteam/go-seele/common"
-	"github.com/seeleteam/go-seele/core/types"
+	"github.com/scdoproject/go-stem/common"
+	"github.com/scdoproject/go-stem/core/types"
 	"github.com/stretchr/testify/assert"
 )
 
